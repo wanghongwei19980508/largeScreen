@@ -1,5 +1,6 @@
 <template>
-  <div class="about">
+  <div>
+    <loadingShow :loadingShow="loadingShow" />
     <div ref="main" id="main"></div>
   </div>
 </template>
@@ -8,14 +9,19 @@
 
 import * as echarts from 'echarts';
 import { MapChart } from 'echarts/charts'
-import loadBMap from '../utils/baiduapi'
-import { InternationalMap } from '../utils/InternationalMap'
-import { InternationalOutline } from '../utils/InternationalOutline'
+import loadBMap from '../../utils/baiduapi'
+import { InternationalMap } from '../../utils/InternationalMap'
+import { InternationalOutline } from '../../utils/InternationalOutline'
+import { chinaMap, chinaMapOutline } from '../../utils/chinaMap'
 import 'echarts/extension/bmap/bmap';
+
+import loadingShow from '../../components/loading.vue'
 export default {
+  components: { loadingShow },
   data() {
     return {
-      option: []
+      option: [],
+      loadingShow: true
     }
   },
   mounted() {
@@ -28,8 +34,11 @@ export default {
     map() {
       var myChart = echarts.init(document.getElementById('main'));
 
-      echarts.registerMap('InternationalMap', InternationalMap);
-      echarts.registerMap('InternationalOutline', InternationalOutline);
+      echarts.registerMap('MapJson', InternationalMap);
+      echarts.registerMap('OutlineJson', InternationalOutline);
+
+      // echarts.registerMap('MapJson', chinaMap);
+      // echarts.registerMap('OutlineJson', chinaMapOutline);
 
 
       var chinaGeoCoordMap = {
@@ -41,16 +50,11 @@ export default {
         "河北": [51.88840662, 55.07229351],
         "天津": [115.00065627, 53.04648107],
         "山西": [69.4735132, 57.29311985],
-        "陕西": [44.87612302,
-          39.58523026],
-        "甘肃": [61.59816903,
-          31.06292714],
-        "宁夏": [102.05457995,
-          59.8242106],
-        "青海": [87.4901852,
-          61.15259914],
-        "新疆": [147.15029084,
-          61.46337121],
+        "陕西": [44.87612302, 39.58523026],
+        "甘肃": [61.59816903, 31.06292714],
+        "宁夏": [102.05457995, 59.8242106],
+        "青海": [87.4901852, 61.15259914],
+        "新疆": [147.15029084, 61.46337121],
         "西藏": [91.11, 29.97],
         "四川": [103.9526, 30.7617],
         "重庆": [108.384366, 30.439702],
@@ -177,7 +181,7 @@ export default {
       };
       var series = [
         {
-          map: 'InternationalMap',
+          map: 'MapJson',
           type: 'map',
           zoom: 1.3,
           label: {
@@ -243,13 +247,15 @@ export default {
           },
           label: {
             normal: {
-              show: false,
-              position: 'right', //显示位置
+              show: true, // 显示文本 false 移动展示
+              position: 'top', //显示位置
               offset: [5, 0], //偏移设置
               formatter: function (params) {//圆环显示文字
                 return params.data.name;
               },
-              fontSize: 13
+              fontSize: 13,
+              color: '#ee991a',
+              color: '#fff',
             },
             emphasis: {
               show: true
@@ -285,7 +291,7 @@ export default {
         color: ['#34c6bb'],
         geo: {
           silent: true,
-          map: 'InternationalOutline',
+          map: 'OutlineJson',
           zoom: 1.3,
           top: '22%',
           label: {

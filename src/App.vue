@@ -1,10 +1,7 @@
 <template>
   <div id="app">
-    <!-- <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav> -->
-    <router-view/>
+    <img src="./assets/header.png" style="width: 100%;height: 100px;" />
+    <router-view />
   </div>
 </template>
 
@@ -16,9 +13,11 @@
   text-align: center;
   color: #2c3e50;
 }
-#app,body {
+
+#app,
+body,
+* {
   padding: 0;
   border: 0;
   margin: 0;
-}
-</style>
+}</style>
