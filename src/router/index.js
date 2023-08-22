@@ -17,6 +17,10 @@ const routes = [
     path: '/baidumap',
     name: 'baidumap',
     component: () => import('../views/baidumap/index.vue')
+  },{
+    path: '/from',
+    name: 'from',
+    component: () => import('../views/from/index.vue')
   }
 ]
 

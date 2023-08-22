@@ -11,7 +11,7 @@
       <template #main>
         <div class="echartsBox">
           <div class="echarts">
-            <BlockTitle :type="'spread'" @titleClick="aaa" />
+            <BlockTitle :type="'spread'" @titleClick="expandView" />
             <barChart ref="barEchartCompRef" :barEchartData="barEchartData1" />
           </div>
           <div class="echarts">
@@ -91,7 +91,7 @@ export default {
     }, 1000)
   },
   methods: {
-    aaa() {
+    expandView() {
       this.dialogData = this.barEchartData1
       this.dialogVisible = true
     }

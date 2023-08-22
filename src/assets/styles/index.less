@@ -1,30 +1,63 @@
-.el-dialog {
+// form表单,dialog弹出框
+.el-form,
+.el-dialog,
+.el-table {
   background: linear-gradient(to bottom, #0D1F38, #0D1D35, #0D1E36);
+
+  .el-dialog__header {
+    .el-dialog__title {
+      color: #e6ecf8;
+    }
+  }
+
+  .el-form-item__label {
+    color: aliceblue;
+  }
+
+  th.el-table__cell,
+  td.el-table__cell,
+  tr {
+    background-color: #242c46;
+    border-bottom-color: #112339 !important;
+    color: #fff;
+
+    &&:hover {
+      background-color: #0032a6;
+    }
+  }
+
+  &&::before {
+    background-color: #0032a6;
+  }
+
+  tbody tr:hover>td {
+    background: #293f72 !important;
+  }
 }
 
-.el-form-item__label {
-  color: aliceblue;
-}
 
 .el-input__inner,
-.el-range-input {
+.el-range-input,
+.el-textarea__inner {
   background-color: #162A50;
   color: #9099AD;
   border-color: #1E4288;
 }
 
+// 日历范围选择器文本
 .el-range-separator,
 .el-date-editor>.el-range-separator {
   color: #9099AD;
 }
 
-.el-date-range-picker {
-  .el-picker-panel__body {
-    background-color: #162A50;
-    color: #f8faff;
-  }
+// 日历选择器，下拉列表
+.el-picker-panel,
+.el-select-dropdown__empty {
+  background-color: #162A50;
+  color: #f8faff;
 }
 
+// 日历选择器
 .el-date-table {
   td.in-range {
     div {
@@ -39,11 +72,47 @@
   }
 
   th {
-    color: #00f9f9;
+    color: #0064ff;
   }
 }
 
-
+// 日历选择器左右选择器
 .el-picker-panel__icon-btn {
   color: #f2f6ff;
+}
+
+.el-time-spinner__item.active:not(.disabled) {
+  color: #568bf5;
+}
+
+.el-time-panel__btn {
+  color: #9ca0a9;
+}
+
+// button按钮
+.el-button--primary {
+  background-color: #00306B;
+  border-color: #0962CB;
+}
+
+// radio选择器
+.el-radio__label {
+  color: #59b9d8;
+}
+
+
+.el-table__body-wrapper {
+  &::-webkit-scrollbar-track {
+    background-color: #063570;
+  }
+
+  &::-webkit-scrollbar {
+    width: 10px;
+    opacity: 0.5;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 15px;
+    background-color: #0257aa;
+  }
 }
