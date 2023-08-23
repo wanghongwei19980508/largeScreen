@@ -1,62 +1,106 @@
 <template>
   <div>
-    <panel :panelAsideShow="false">
+    <loadingShow :loadingShow="loadingShow" />
+    <panel :panelHeaderShow="false" :panelAsideWidth="'20vw'">
       <template #aside>
-        <div class="aside">
-          <dv-border-box-10>
-
-          </dv-border-box-10>
+        <div class="asideBox">
+          <div class="asideContent">
+            <BlockTitle :type="'more'" :title="'国际制造业数据库'" @titleClick="expandView('/index/chartList')" />
+            <barChart ref="barEchartCompRef" :barEchartData="barEchartData" />
+          </div>
+          <div class="asideContent">
+            <BlockTitle :type="'more'" :title="'国际工业链政策'" @titleClick="expandView('/index/chartList')" />
+            <el-table :height="'calc(100% - 40px)'" :data="policyData">
+              <el-table-column prop="title" label="标题" min-width="45%" header-align="left">
+                <template v-slot="scope">
+                  <div class="tableText">{{ scope.row.title }}</div>
+                </template>
+              </el-table-column>
+              <el-table-column prop="source" label="来源" min-width="25%" header-align="left">
+                <template v-slot="scope">
+                  <div class="tableText">{{ scope.row.source }}</div>
+                </template>
+              </el-table-column>
+              <el-table-column prop="date" label="日期" min-width="30%" header-align="left">
+                <template v-slot="scope">
+                  <div class="tableText">{{ scope.row.date }}</div>
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
+          <div class="asideContent">
+            <BlockTitle :type="'more'" :title="'产品报告'" @titleClick="expandView('/index/chartList')" />
+            <div class="previewBox">
+              <previewCard v-for="(row, index) in reportData" :key="index" :previewData="row" :previewImg="row.img"
+                @preview="preview" @download="download"></previewCard>
+            </div>
+          </div>
         </div>
       </template>
       <template #main>
-        <div class="echartsBox">
-          <div class="echarts">
-            <BlockTitle :type="'spread'" @titleClick="expandView" />
-            <barChart ref="barEchartCompRef" :barEchartData="barEchartData1" />
+        <div class="mainBox">
+          <div class="leftBox">
+            <BlockTitle :title="'国际制造业迁移'" />
+            <div class="echarts">
+              <mapEcharts></mapEcharts>
+            </div>
           </div>
-          <div class="echarts">
-            <BlockTitle :type="'spread'" />
-            <barChart ref="barEchartCompRef" :barEchartData="barEchartData1" />
-          </div>
-          <div class="echarts">
-            <BlockTitle :type="'spread'" />
-            <barChart ref="barEchartCompRef" :barEchartData="barEchartData" />
-          </div>
-          <div class="echarts">
-            <BlockTitle :type="'spread'" />
-            <barChart ref="barEchartCompRef" :barEchartData="barEchartData" />
-          </div>
-          <div class="echarts">
-            <BlockTitle :type="'spread'" />
-            <barChart ref="barEchartCompRef" :barEchartData="barEchartData" />
+          <div class="rightBox">
+            <div class="asideContent">
+              <BlockTitle :type="'more'" :title="'企业外迁动态'" @titleClick="expandView('/index/chartList')" />
+              <el-table :height="'calc(100% - 40px)'" :data="policyData">
+                <el-table-column prop="title" label="标题" min-width="70%" header-align="left">
+                  <template v-slot="scope">
+                    <div class="tableText">{{ scope.row.title }}</div>
+                  </template>
+                </el-table-column>
+                <el-table-column prop="date" label="日期" min-width="30%" header-align="left">
+                  <template v-slot="scope">
+                    <div class="tableText">{{ scope.row.date }}</div>
+                  </template>
+                </el-table-column>
+              </el-table>
+            </div>
+            <div class="asideContent">
+              <BlockTitle :type="'more'" :title="'国际冲击'" @titleClick="expandView('/index/chartList')" />
+              <el-table :height="'calc(100% - 40px)'" :data="policyData">
+                <el-table-column prop="title" label="企业名称" min-width="20%" header-align="left">
+                  <template v-slot="scope">
+                    <div class="tableText">{{ scope.row.title }}</div>
+                  </template>
+                </el-table-column>
+                <el-table-column prop="title" label="所属领域" min-width="20%" header-align="left">
+                  <template v-slot="scope">
+                    <div class="tableText">{{ scope.row.title }}</div>
+                  </template>
+                </el-table-column>
+                <el-table-column prop="title" label="纳入清单" min-width="30%" header-align="left">
+                  <template v-slot="scope">
+                    <div class="tableText">{{ scope.row.title }}</div>
+                  </template>
+                </el-table-column>
+                <el-table-column prop="date" label="纳入时间" min-width="30%" header-align="left">
+                  <template v-slot="scope">
+                    <div class="tableText">{{ scope.row.date }}</div>
+                  </template>
+                </el-table-column>
+              </el-table>
+            </div>
+            <div class="asideContent">
+              <BlockTitle :title="'产业救济'" @titleClick="expandView('/index/chartList')" />
+              <div class="industrial">
+                <div class="industrialText">
+                  <div></div>
+                  产业救济专门为受打压企业提供申诉办理、产业扶
+                  持、产融合作等服务。
+                </div>
+                <el-button type="primary" size="mini" @click="expandView('/index/chartList')">立即申请</el-button>
+              </div>
+            </div>
           </div>
         </div>
       </template>
     </panel>
-    <el-dialog :visible.sync="dialogVisible" width="80%" top="5vh" :show-close="false">
-      <span slot="title">
-        <BlockTitle />
-        <el-form ref="form" :model="dialogForm" label-width="80px" size="mini" style="margin-top: 22px;">
-          <el-row>
-            <el-col :span="8">
-              <el-form-item label="活动名称">
-                <el-input v-model="dialogForm.name"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item label="活动时间">
-                <el-date-picker v-model="dialogForm.time" type="daterange" range-separator="至" start-placeholder="开始日期"
-                  end-placeholder="结束日期">
-                </el-date-picker>
-              </el-form-item>
-            </el-col>
-          </el-row>
-        </el-form>
-      </span>
-      <div class="dialogEcharts" v-if="dialogVisible">
-        <barChart ref="barEchartCompRef" :barEchartData="dialogData" />
-      </div>
-    </el-dialog>
   </div>
 </template>
 
@@ -64,74 +108,163 @@
 import panel from '../components/panel.vue'
 import barChart from '../components/barChart.vue'
 import BlockTitle from '../components/BlockTitle.vue'
+import previewCard from '../components/previewCard.vue'
+import mapEcharts from './computent/echarts/flightDiagram.vue'
+import loadingShow from '../components/loading.vue'
+
 export default {
-  components: { panel, barChart, BlockTitle },
+  components: { BlockTitle, panel, barChart, previewCard, mapEcharts, loadingShow },
   data() {
     return {
-      dialogVisible: false,
-      dialogForm: {
-        name: null,
-        time: null,
-      },
-      dialogData: {},
+      loadingShow: true,
       barEchartData: {},
-      barEchartData1: {
-        xAxis: ['1', '2', '3', '4', '5', '6', '7', '1', '2', '3', '4', '5', '6', '7'],
-        series: [{ name: '数据一', data: [10, 52, 200, 334, 390, 330, 220,], color: '#fffac1' }, { name: '数据2', data: [10, 52, 200, 334, 390, 330, 220,], type: 'line', areaStyle: true }],
-      },
+      policyData: [],
+      reportData: [],
     }
   },
   mounted() {
+    console.log(this.$route);
     this.barEchartData = {
       xAxis: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
       series: [{ name: '数据一', data: [10, 52, 200, 334, 390, 330, 220,] }, { name: '数据2', data: [10, 52, 200, 334, 390, 330, 220,], type: 'line' }],
     }
-    setTimeout(() => {
-      this.barEchartData.series.push({ name: '数据3', data: [20, 152, 300, 434, 590, 630, 320,], type: 'line', areaStyle: true, labelShow: true })
-    }, 1000)
+    this.policyData = [
+      { title: '捷爱士光电科技袜子星礼卡你擦', source: '半导体半导体半导体', date: '2022-02-02' },
+      { title: '捷爱士光电科技袜子星礼卡你擦', source: '半导体半导体半导体', date: '2022-02-02' },
+      { title: '捷爱士光电科技袜子星礼卡你擦', source: '半导体半导体半导体', date: '2022-02-02' },
+    ]
+    this.reportData = [
+      { img: 'https://hbimg.b0.upaiyun.com/539f0dde3ed1ef6f451381a85ac6ff807b2526911005e-n1NrWn_fw658', url: 'xxx' },
+      { img: 'https://hbimg.b0.upaiyun.com/539f0dde3ed1ef6f451381a85ac6ff807b2526911005e-n1NrWn_fw658', url: 'xxx' },
+      { img: 'https://hbimg.b0.upaiyun.com/539f0dde3ed1ef6f451381a85ac6ff807b2526911005e-n1NrWn_fw658', url: 'xxx' },
+      { img: 'https://hbimg.b0.upaiyun.com/539f0dde3ed1ef6f451381a85ac6ff807b2526911005e-n1NrWn_fw658', url: 'xxx' },
+    ]
+    this.loadingShow = false
   },
   methods: {
-    expandView() {
-      this.dialogData = this.barEchartData1
-      this.dialogVisible = true
+    expandView(row) {
+      this.$router.push(row)
+    },
+    preview(row) {
+
+    },
+    download(row) {
+
     }
   }
 }
 </script>
 
 <style lang="less" scoped>
-.aside {
-  background-color: #050D1A;
-  margin: 20px;
-  height: calc(100% - 40px);
-}
-
-.echartsBox {
+.asideBox {
   display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: flex-start;
-  margin: 10px 0 0 0;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: calc(100% - 20px);
+  padding: 10px 0;
 
-  .echarts {
-    width: 30%;
-    height: calc(40vh + 70px);
-    margin: 0 1.5% 10px;
+  .asideContent {
+    height: calc(33.3% - 20px);
+    width: 100%;
+    margin: 8px 0;
+    border: #123370 2px solid;
+    box-sizing: border-box;
+
+    .echartsBox {
+      height: calc(100% - 40px);
+    }
+  }
+
+  .tableText {
+    white-space: nowrap; //不换行
+    overflow: hidden; //超出部分隐藏
+    text-overflow: ellipsis; //文本溢出显示省略号
+  }
+
+  .previewBox {
+    height: calc(100% - 60px);
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: stretch;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    overflow: auto;
+    padding: 10px 0;
+
+    .previewCard {
+      width: calc(50% - 15px);
+      height: 90px;
+      margin: 5px 0;
+    }
   }
 }
 
-:deeo .el-dialog__body {
-  padding: 10px 10px 30px;
+.mainBox {
+  height: 100%;
+  display: flex;
+
+  .leftBox {
+    width: calc(60vw - 20px);
+    height: calc(100% - 10px);
+    padding: 10px 0;
+
+    .echarts {
+      overflow: auto;
+      width: 100%;
+      height: calc(100% - 60px);
+    }
+  }
+
+  .rightBox {
+    width: 20vw;
+    height: 100%;
+    margin: 0 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .asideContent {
+      height: calc(33.3% - 20px);
+      width: 100%;
+      margin: 8px 0;
+      border: #123370 2px solid;
+      box-sizing: border-box;
+
+      .industrial {
+        height: calc(100% - 60px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+
+        .industrialText {
+          font-size: 13px;
+          line-height: 1.5;
+          color: white;
+          text-align: left;
+
+          div {
+            width: 50px;
+            height: 50px;
+            background-color: #123370;
+            background-size: 100% 100%;
+            float: left;
+            margin: 0 10px 0 0;
+          }
+        }
+      }
+    }
+
+    .tableText {
+      white-space: nowrap; //不换行
+      overflow: hidden; //超出部分隐藏
+      text-overflow: ellipsis; //文本溢出显示省略号
+    }
+  }
 }
 
-.dialogEcharts {
-  width: 100%;
-  height: 60vh;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
+::v-deep .el-table {
+  font-size: 12px;
 }
 </style>

@@ -12,7 +12,7 @@
       </el-header>
 
       <el-container>
-        <el-aside v-show="panelAsideShow" width="300px">
+        <el-aside v-show="panelAsideShow" :width="panelAsideWidth">
           <slot name="aside" :row="''"></slot>
         </el-aside>
         <el-main>
@@ -39,6 +39,10 @@ export default {
       type: Boolean,
       default: true,
     },
+    panelAsideWidth: {
+      type: String,
+      default: '300px',
+    },
     panelBoxHeight: {
       type: String,
       default: 'calc(100vh - 120px)',
@@ -54,7 +58,7 @@ export default {
       const first = matched[0]
 
       if (!this.isDashboard(first)) {
-        matched = [{ path: '/index', meta: { title: '首页' } }].concat(matched)
+        // matched = [{ path: '/index', meta: { title: '首页' } }].concat(matched)
       }
 
       this.breadcrumbList = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
@@ -99,12 +103,20 @@ export default {
   }
 }
 
+.el-main {
+  padding: 10px;
+}
+
 .el-container {
   height: calc(100% - 60px);
 }
 
 .el-aside {
   color: #333;
+}
+
+::v-deep .el-breadcrumb__inner a {
+  color: #ffffff;
 }
 </style>
     

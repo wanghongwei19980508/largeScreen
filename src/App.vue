@@ -1,9 +1,16 @@
 <template>
   <div id="app">
-    <img src="./assets/header.png" style="width: 100%;height: 100px;" />
+    <!-- <Title></Title> -->
     <router-view />
   </div>
 </template>
+
+<script>
+import Title from './components/hearder'
+export default {
+  components: { Title }
+}
+</script>
 
 <style lang="less">
 #app {
@@ -20,4 +27,5 @@ body,
   padding: 0;
   border: 0;
   margin: 0;
-}</style>
+}
+</style>

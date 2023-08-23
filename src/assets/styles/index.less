@@ -52,9 +52,21 @@
 
 // 日历选择器，下拉列表
 .el-picker-panel,
-.el-select-dropdown__empty {
+.el-picker-panel__footer,
+.el-select-dropdown__empty,
+.el-dropdown-menu {
   background-color: #162A50;
   color: #f8faff;
+
+  .el-dropdown-menu__item {
+    color: #f8faff;
+  }
+
+  .el-button--mini {
+    background-color: #00306B;
+    border-color: #0962CB;
+    color: #f8faff;
+  }
 }
 
 // 日历选择器
@@ -101,13 +113,19 @@
 }
 
 
-.el-table__body-wrapper {
+.el-table__body-wrapper,
+div {
+  .el-table__body {
+    width: 100% !important;
+  }
+
   &::-webkit-scrollbar-track {
     background-color: #063570;
   }
 
   &::-webkit-scrollbar {
     width: 10px;
+    height: 10px;
     opacity: 0.5;
   }
 

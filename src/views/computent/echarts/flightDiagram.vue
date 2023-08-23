@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <loadingShow :loadingShow="loadingShow" />
+  <div class="mapBox">
     <div ref="main" id="main"></div>
   </div>
 </template>
@@ -9,19 +8,17 @@
 
 import * as echarts from 'echarts';
 import { MapChart } from 'echarts/charts'
-import loadBMap from '../../utils/baiduapi'
-import { InternationalMap } from '../../utils/InternationalMap'
-import { InternationalOutline } from '../../utils/InternationalOutline'
-import { chinaMap, chinaMapOutline } from '../../utils/chinaMap'
+import loadBMap from '../../../utils/baiduapi'
+import { InternationalMap } from '../../../utils/InternationalMap'
+import { InternationalOutline } from '../../../utils/InternationalOutline'
+import { chinaMap, chinaMapOutline } from '../../../utils/chinaMap'
 import 'echarts/extension/bmap/bmap';
 
-import loadingShow from '../../components/loading.vue'
 export default {
-  components: { loadingShow },
+  components: {},
   data() {
     return {
       option: [],
-      loadingShow: true
     }
   },
   mounted() {
@@ -335,8 +332,15 @@ export default {
 }
 </script>
 <style scoped>
+.mapBox {
+  height: 100%;
+  width: 100%;
+}
+
 #main {
-  width: 100vw;
-  height: 100vh;
+  min-width: 50px;
+  min-height: 50px;
+  width: 100%;
+  height: 100%;
 }
 </style>
