@@ -87,14 +87,14 @@
               </el-table>
             </div>
             <div class="asideContent">
-              <BlockTitle :title="'产业救济'" @titleClick="expandView('/index/chartList')" />
+              <BlockTitle :title="'产业救济'" @titleClick="expandView('/index/industrialRelief')" />
               <div class="industrial">
                 <div class="industrialText">
                   <div></div>
                   产业救济专门为受打压企业提供申诉办理、产业扶
                   持、产融合作等服务。
                 </div>
-                <el-button type="primary" size="mini" @click="expandView('/index/chartList')">立即申请</el-button>
+                <el-button type="primary" size="mini" @click="expandView('/index/industrialRelief')">立即申请</el-button>
               </div>
             </div>
           </div>
@@ -187,9 +187,10 @@ export default {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
     overflow: auto;
     padding: 10px 0;
+    align-content: flex-start;
+    justify-content: space-around;
 
     .previewCard {
       width: calc(50% - 15px);

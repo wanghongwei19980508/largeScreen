@@ -33,6 +33,11 @@ const routes = [
         name: 'chartList',
         meta: { title: '国际制造业数据库', icon: 'dashboard' },
         component: () => import('../views/chartList/index.vue')
+      }, {
+        path: '/index/industrialRelief',
+        name: 'industrialRelief',
+        meta: { title: '产业救济', icon: 'dashboard' },
+        component: () => import('../views/industrialRelief/index.vue')
       }
     ]
   },
