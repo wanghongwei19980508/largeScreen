@@ -9,7 +9,7 @@
             <!-- 输入框 -->
             <el-input v-if="item.type === 'input'" class="form_input" v-model="searchData[item.prop]" :clearable="true"
               :placeholder="item.placeholder" :disabled="item.disabled"
-              :style="`width:${!item.width ? '200px' : typeof (item.width) == 'number' ? item.width + 'px' : item.width}`">
+              :style="`width:${!item.width ? '350px' : typeof (item.width) == 'number' ? item.width + 'px' : item.width}`">
             </el-input>
 
             <!-- 数字输入框 -->
@@ -17,26 +17,26 @@
               :min="item.min" :clearable="true" :max="item.max" :controls="item.controls"
               :controls-position="item.position" :placeholder="item.placeholder" :step="item.step ? item.step : 1"
               :step-strictly="item.strictly ? true : false" :disabled="item.disabled"
-              :style="`width:${!item.width ? '200px' : typeof (item.width) == 'number' ? item.width + 'px' : item.width}`" />
+              :style="`width:${!item.width ? '350px' : typeof (item.width) == 'number' ? item.width + 'px' : item.width}`" />
 
             <!-- 密码框 -->
             <el-input v-else-if="item.type === 'password'" type="password" :disabled="item.disabled"
               v-model="searchData[item.prop]" :placeholder="item.placeholder" auto-complete="off" :clearable="true"
-              :style="`width:${!item.width ? '200px' : typeof (item.width) == 'number' ? item.width + 'px' : item.width}`"
+              :style="`width:${!item.width ? '350px' : typeof (item.width) == 'number' ? item.width + 'px' : item.width}`"
               show-password>
             </el-input>
 
             <!-- 文本域 -->
             <el-input v-if="item.type === 'textarea'" class="form_input" v-model="searchData[item.prop]" :clearable="true"
               :placeholder="item.placeholder" :disabled="item.disabled"
-              :style="`width:${!item.width ? '200px' : typeof (item.width) == 'number' ? item.width + 'px' : item.width}`"
-              type="textarea" :autosize="item.autosize">
+              :style="`width:${!item.width ? '350px' : typeof (item.width) == 'number' ? item.width + 'px' : item.width}`"
+              type="textarea" :autosize="item.autosize" :maxlength= "item.maxlength" :show-word-limit="item.showWordLimit">
             </el-input>
 
             <!-- 下拉框 -->
             <!-- $forceUpdate() 下拉刷新,修复数据改变下拉框不变的bug -->
             <el-select v-else-if="item.type === 'select'" v-model="searchData[item.prop]"
-              :style="`width:${!item.width ? '200px' : typeof (item.width) == 'number' ? item.width + 'px' : item.width}`"
+              :style="`width:${!item.width ? '350px' : typeof (item.width) == 'number' ? item.width + 'px' : item.width}`"
               :placeholder="item.placeholder" :disabled="item.disabled" :clearable="true" :multiple="item.multiple"
               :filterable="item.filterable" @change="item.change && item.change(searchData[item.prop])"
               @visible-change="$forceUpdate()">
@@ -48,7 +48,7 @@
 
             <!-- 级联选择器 -->
             <el-cascader v-else-if="item.type === 'cascader'"
-              :style="`width:${!item.width ? '200px' : typeof (item.width) == 'number' ? item.width + 'px' : item.width}`"
+              :style="`width:${!item.width ? '350px' : typeof (item.width) == 'number' ? item.width + 'px' : item.width}`"
               v-model="searchData[item.prop]" :placeholder="item.placeholder" :clearable="true" :disabled="item.disabled"
               @change="item.change && item.change(searchData[item.prop], item)" :options="item.options"
               :show-all-levels="item.showAllLevels" :filterable="item.filterable" :props="item.props">
@@ -93,7 +93,7 @@
             <el-date-picker v-else-if="item.type === 'date'" v-model="searchData[item.prop]"
               @change="item.change && item.change(searchData[item.prop])" :disabled="item.disabled"
               :placeholder="item.placeholder" :picker-options="item.pickerOptions"
-              :style="`width:${!item.width ? '200px' : typeof (item.width) == 'number' ? item.width + 'px' : item.width}`"
+              :style="`width:${!item.width ? '350px' : typeof (item.width) == 'number' ? item.width + 'px' : item.width}`"
               :format="item.format ? '' : item.format" :readonly="item.readonly" :editable="item.editable"
               :type="item.dateType" :default-value="item.defaultValue" :shortcuts="item.shortcuts">
             </el-date-picker>
@@ -103,7 +103,7 @@
               @change="item.change && item.change(searchData[item.prop])" :disabled="item.disabled" type="daterange"
               start-placeholder="开始日期" end-placeholder="结束日期" value-format="YYYY-MM-DD"
               :picker-options="item.pickerOptions"
-              :style="`width:${!item.width ? '250px' : typeof (item.width) == 'number' ? item.width + 'px' : item.width}`"
+              :style="`width:${!item.width ? '400px' : typeof (item.width) == 'number' ? item.width + 'px' : item.width}`"
               :readonly="item.readonly" :editable="item.editable" :default-value="item.defaultValue"
               :unlink-panels="item.unlinkPanels">
             </el-date-picker>
@@ -111,7 +111,7 @@
             <!-- 时间 -->
             <el-time-picker v-else-if="item.type === 'time'" v-model="searchData[item.prop]" :disabled="item.disabled"
               :placeholder="item.placeholder"
-              :style="`width:${!item.width ? '200px' : typeof (item.width) == 'number' ? item.width + 'px' : item.width}`"
+              :style="`width:${!item.width ? '350px' : typeof (item.width) == 'number' ? item.width + 'px' : item.width}`"
               :editable="item.editable" :readonly="item.readonly"
               @change="item.change && item.change(searchData[item.prop])" :is-range="item.isRange"
               :arrow-control="item.arrowControl" :disabled-hours="item.disabledHours"
@@ -129,13 +129,13 @@
               @change="item.change && item.change(searchData[item.prop])" :min="item.min" :max="item.max"
               :step="item.step" :show-input="item.showInput" :show-stops="item.showStops" :range="item.range"
               :marks="item.marks"
-              :style="`width:${!item.width ? '300px' : typeof (item.width) == 'number' ? item.width + 'px' : item.width}`">
+              :style="`width:${!item.width ? '450px' : typeof (item.width) == 'number' ? item.width + 'px' : item.width}`">
             </el-slider>
 
             <!-- 开关 -->
             <el-switch v-else-if="item.type === 'switch'" v-model="searchData[item.prop]" :disabled="item.disabled"
               @change="item.change && item.change(searchData[item.prop])"
-              :style="`width:${!item.width ? '200px' : typeof (item.width) == 'number' ? item.width + 'px' : item.width};--el-switch-on-color: ${item.trueColor ? item.trueColor : '#409EFF'}; --el-switch-off-color: ${item.falseColor ? item.falseColor : '#DCDFE6'}`"
+              :style="`width:${!item.width ? '350px' : typeof (item.width) == 'number' ? item.width + 'px' : item.width};--el-switch-on-color: ${item.trueColor ? item.trueColor : '#409EFF'}; --el-switch-off-color: ${item.falseColor ? item.falseColor : '#DCDFE6'}`"
               :inactive-text="item.inactiveText" :active-text="item.activeText" :inline-prompt="item.inlinePrompt">
             </el-switch>
 

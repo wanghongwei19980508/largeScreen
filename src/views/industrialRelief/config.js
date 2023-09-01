@@ -1,4 +1,4 @@
-const searchForm = [
+const basicInformationForm = [
   [
     {
       span: 12,
@@ -110,7 +110,74 @@ const searchForm = [
       // change: row => { },
       // rules: [{ required: true, message: '请选择年产品销售量', trigger: "blur" }]
     },
+  ],
+  [
+    {
+      span: 24,
+      type: 'slot',
+      prop: "button",
+    }
   ]
 ]
 
-export { searchForm }
+const beCrushedForm = [
+  [
+    {
+      span: 24,
+      type: "date",
+      label: "受打压时间",
+      prop: "timeUnderPressure",
+      placeholder: "请选择受打压时间",
+      // options: [],
+      // change: row => { },
+      // rules: [{ required: true, message: '请选择受打压时间', trigger: "blur" }]
+    },
+    {
+      span: 24,
+      type: "textarea",
+      label: "受打压原因",
+      prop: "timeUnderPressure",
+      placeholder: "请输入受打压原因",
+      maxlength: 100,
+      autosize: { minRows: 3, maxRows: 6 },
+      showWordLimit: true,
+      // options: [],
+      // change: row => { },
+      // rules: [{ required: true, message: '请输入受打压原因', trigger: "blur" }]
+    },
+    {
+      span: 24,
+      type: "textarea",
+      label: "受打压措施",
+      prop: "timeUnderPressure",
+      placeholder: "请输入受打压措施",
+      maxlength: 100,
+      autosize: { minRows: 3, maxRows: 6 },
+      showWordLimit: true,
+      // options: [],
+      // change: row => { },
+      // rules: [{ required: true, message: '请输入受打压措施', trigger: "blur" }]
+    },
+    {
+      span: 24,
+      type: "textarea",
+      label: "企业现状",
+      prop: "timeUnderPressure",
+      placeholder: "请输入企业现状",
+      maxlength: 100,
+      autosize: { minRows: 3, maxRows: 6 },
+      showWordLimit: true,
+      // options: [],
+      // change: row => { },
+      // rules: [{ required: true, message: '请输入企业现状', trigger: "blur" }]
+    },
+  ],
+  [
+    {
+      span: 24,
+      type: 'slot',
+      prop: "button",
+    }
+  ]
+]
+export { basicInformationForm, beCrushedForm }
