@@ -21,18 +21,20 @@ export default {
       mapEchart: null, // 地图
       option: [],
       barEchartSzie: { width: 'auto', height: 'auto' },
+      debounceResize: null, // 重绘方法
     }
   },
   mounted() {
     this.mapEchart = echarts.init(this.$refs['echart-map-ref']);
+    this.debounceResize = this.debounce(this.resize, 200)
     loadBMap("密钥").then(() => {
       echarts.use(MapChart)
       this.map()
-      window.addEventListener("resize", this.debounce(this.resize, 200))
+      window.addEventListener("resize", this.debounceResize)
     })
   },
   beforeDestroy() {
-    window.removeEventListener('resize', this.debounce(this.resize, 200))
+    window.removeEventListener('resize', this.debounceResize)
   },
   methods: {
     map() {
@@ -255,7 +257,7 @@ export default {
     resize() {
       this.mapEchart.resize(this.barEchartSzie)
       this.mapEchart.clear()
-      this.mapEchart.setOption(this.option);
+      this.option && this.mapEchart.setOption(this.option);
     }
   }
 }

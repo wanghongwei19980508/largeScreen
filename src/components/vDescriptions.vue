@@ -5,7 +5,7 @@
         <el-descriptions-item :key="'vDescriptions' + index" v-if="item.type !== 'slot'" :label="item.label"
           label-class-name="my-label">
           <span v-if="item.filter">
-            {{ item.filter && item.filter(searchData[item.prop]) }}
+            {{ item.filter && item.filter(searchData) }}
           </span>
           <span v-else>{{ searchData[item.prop] }}</span>
         </el-descriptions-item>

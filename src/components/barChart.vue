@@ -28,15 +28,17 @@ export default {
       barEchart: null,
       option: [],
       barEchartSzie: { width: 'auto', height: 'auto' },
+      debounceResize: null, // 重绘方法
     };
   },
   mounted() {
     this.barEchart = echarts.init(this.$refs['bar-echart-ref']);
-    window.addEventListener("resize", this.debounce(this.resize, 200))
+    this.debounceResize = this.debounce(this.resize, 200)
+    window.addEventListener("resize", this.debounceResize)
     this.initializeData()
   },
   beforeDestroy() {
-    window.removeEventListener('resize', this.debounce(this.resize, 200))
+    window.removeEventListener('resize', this.debounceResize)
   },
   methods: {
     // 数据渲染
@@ -138,7 +140,7 @@ export default {
     resize() {
       this.barEchart.resize(this.barEchartSzie)
       this.barEchart.clear()
-      this.barEchart.setOption(this.option);
+      this.option && this.barEchart.setOption(this.option);
     }
   },
   watch: {

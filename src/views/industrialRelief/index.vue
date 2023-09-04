@@ -8,15 +8,16 @@
           <el-step title="受打压申请"></el-step>
           <el-step title="等待审核" @click="stepActive = 2"></el-step>
         </el-steps>
-        <vFrom v-if="stepActive == 0" labelWidth="140px" ref="searchSubmitForm" size="default"
-          :searchData="basicInformationData" :searchForm="basicInformationForm" :cancelBtn="false" :successBtn="false">
+        <vFrom v-if="stepActive == 0" labelWidth="140px" ref="basicInformationRef" size="default"
+          :searchData="basicInformationData" :searchForm="basicInformationForm" :cancelBtn="false" :successBtn="false"
+          @fromSubmit="onSubmit">
           <template #button>
             <el-button type="primary" @click="save">保存</el-button>
             <el-button type="primary" @click="submit">提交</el-button>
           </template>
         </vFrom>
-        <vFrom v-if="stepActive == 1" labelWidth="140px" ref="searchSubmitForm" size="default" :searchData="beCrushedData"
-          :searchForm="beCrushedForm" :cancelBtn="false" :successBtn="false">
+        <vFrom v-if="stepActive == 1" labelWidth="140px" ref="beCrushedRef" size="default" :searchData="beCrushedData"
+          :searchForm="beCrushedForm" :cancelBtn="false" :successBtn="false" @fromSubmit="onSubmit">
           <template #button>
             <el-button type="primary" @click="save">保存</el-button>
             <el-button type="primary" @click="submit">提交</el-button>
@@ -30,7 +31,7 @@
             :searchForm="beCrushedForm" :title="'受打压申请'" :column="1">
           </vDescriptions>
           <el-button type="primary" @click="$router.push('/index')">返回主页</el-button>
-          <el-button type="primary" @click="submit">重新填写</el-button>
+          <el-button type="primary" @click="toggleStepBar">重新填写</el-button>
         </div>
       </template>
     </panel>
@@ -50,11 +51,13 @@ export default {
       stepActive: 0,
       basicInformationData: {}, // 基本信息填报数据
       beCrushedData: {}, // 受打压申请数据
-      basicInformationForm: basicInformationForm, // 基本信息填报表单
-      beCrushedForm: beCrushedForm, // 受打压申请表单
+      basicInformationForm: [], // 基本信息填报表单
+      beCrushedForm: [], // 受打压申请表单
     }
   },
-  created() {
+  async created() {
+    this.basicInformationForm = await basicInformationForm().then(res => { return res })
+    this.beCrushedForm = await beCrushedForm().then(res => { return res })
   },
   methods: {
     // 保存
@@ -63,8 +66,19 @@ export default {
     },
     // 提交
     submit() {
-      if (this.stepActive++ > 1) this.stepActive = 0;
+      let ref = { 0: 'basicInformationRef', 1: 'beCrushedRef' }
+      this.$refs[ref[this.stepActive]].onSubmit('searchFormRef')
     },
+    // 验证结束
+    onSubmit(item) {
+      console.log(item);
+      this.toggleStepBar()
+    },
+    // 切换步骤栏
+    toggleStepBar() {
+      let ref = { 0: 'basicInformationRef', 1: 'beCrushedRef' }
+      if (this.stepActive++ > 1) this.stepActive = 0; this.$refs[ref[this.stepActive]].onCancel('searchFormRef')
+    }
   },
 }
 </script>
