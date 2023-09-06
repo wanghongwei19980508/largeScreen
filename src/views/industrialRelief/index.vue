@@ -1,6 +1,9 @@
 <template>
   <div>
-    <panel :panelHeaderShow="false" :panelAsideWidth="'20vw'">
+    <panel :panelHeaderShow="true" :panelAsideWidth="'20vw'">
+      <template #aside>
+        <div class="borderBox"></div>
+      </template>
       <template #main>
         <el-steps class="stepsBox" :space="160" :active="stepActive" finish-status="success" process-status="finish"
           :align-center="true">
@@ -76,8 +79,9 @@ export default {
     },
     // 切换步骤栏
     toggleStepBar() {
-      let ref = { 0: 'basicInformationRef', 1: 'beCrushedRef' }
-      if (this.stepActive++ > 1) this.stepActive = 0; this.$refs[ref[this.stepActive]].onCancel('searchFormRef')
+      // let ref = { 0: 'basicInformationRef', 1: 'beCrushedRef' }
+      // this.$refs[ref[this.stepActive]].onCancel('searchFormRef')
+      if (this.stepActive++ > 1) this.stepActive = 0;
     }
   },
 }
@@ -87,6 +91,30 @@ export default {
 .stepsBox {
   justify-content: center;
   margin: 30px 0;
+}
+
+::v-deep .el-input-number .el-input__inner {
+  text-align: left;
+}
+
+.borderBox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../../assets/border.png');
+    background-repeat: repeat;
+    background-size: 100% 100%;
+    z-index: -1;
+  }
 }
 </style>
     

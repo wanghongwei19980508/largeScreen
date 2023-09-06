@@ -47,41 +47,44 @@ export default {
       // echarts.registerMap('OutlineJson', chinaMapOutline);
 
       var mapData = [
-        { "name": "黑龙江", "value": [-65.91347205, 38.07253963, 0] },
-        { "name": "内蒙古", "value": [73.35741779, -44.70031083, 0] },
-        { "name": "吉林", "value": [65.8055114, 49.47057901, 0] },
-        { "name": "辽宁", "value": [75.73084376, -49.54063518, 0] },
-        { "name": "河北", "value": [-51.88840662, 55.07229351, 0] },
-        { "name": "天津", "value": [115.00065627, 53.04648107, 0] },
-        { "name": "山西", "value": [69.4735132, 57.29311985, 0] },
-        { "name": "陕西", "value": [-44.87612302, 39.58523026, 0] },
-        { "name": "甘肃", "value": [61.59816903, 31.06292714, 0] },
-        { "name": "宁夏", "value": [102.05457995, 59.8242106, 0] },
-        { "name": "青海", "value": [87.4901852, -61.15259914, 0] },
-        { "name": "新疆", "value": [147.15029084, 61.46337121, 0] },
-        { "name": "西藏", "value": [91.11, 29.97, 0] },
-        { "name": "四川", "value": [-103.9526, 30.7617, 0] },
-        { "name": "重庆", "value": [108.384366, 30.439702, 0] },
-        { "name": "山东", "value": [117.1582, 36.8701, 0] },
-        { "name": "河南", "value": [113.4668, -34.6234, 0] },
-        { "name": "江苏", "value": [118.8062, 31.9208, 0] },
-        { "name": "安徽", "value": [117.29, 32.0581, 0] },
-        { "name": "湖北", "value": [114.3896, 30.6628, 0] },
-        { "name": "浙江", "value": [119.5313, 29.8773, 0] },
-        { "name": "福建", "value": [-119.4543, 25.9222, 0] },
-        { "name": "江西", "value": [116.0046, 28.6633, 0] },
-        { "name": "湖南", "value": [113.0823, -28.2568, 0] },
-        { "name": "贵州", "value": [106.6992, 26.7682, 0] },
-        { "name": "广西", "value": [108.479, 23.1152, 0] },
-        { "name": "海南", "value": [-110.3893, 19.8516, 0] },
-        { "name": "北京市", "value": [87.38231815, 50.71629756, 1] }
+        { "name": "黑龙江", time: 'aaa', yield: 200, "value": [-65.91347205, 38.07253963, 0] },
+        { "name": "内蒙古", time: 'aaa', yield: 200, "value": [73.35741779, -44.70031083, 0] },
+        { "name": "吉林", time: 'aaa', yield: 200, "value": [65.8055114, 49.47057901, 0] },
+        { "name": "辽宁", time: 'aaa', yield: 200, "value": [75.73084376, -49.54063518, 0] },
+        { "name": "河北", time: 'aaa', yield: 200, "value": [-51.88840662, 55.07229351, 0] },
+        { "name": "天津", time: 'aaa', yield: 200, "value": [115.00065627, 53.04648107, 0] },
+        { "name": "山西", time: 'aaa', yield: 200, "value": [69.4735132, 57.29311985, 0] },
+        { "name": "陕西", time: 'aaa', yield: 200, "value": [-44.87612302, 39.58523026, 0] },
+        { "name": "甘肃", time: 'aaa', yield: 200, "value": [61.59816903, 31.06292714, 0] },
+        { "name": "宁夏", time: 'aaa', yield: 200, "value": [102.05457995, 59.8242106, 0] },
+        { "name": "青海", time: 'aaa', yield: 200, "value": [87.4901852, -61.15259914, 0] },
+        { "name": "新疆", time: 'aaa', yield: 200, "value": [147.15029084, 61.46337121, 0] },
+        { "name": "西藏", time: 'aaa', yield: 200, "value": [91.11, 29.97, 0] },
+        { "name": "四川", time: 'aaa', yield: 200, "value": [-103.9526, 30.7617, 0] },
+        { "name": "重庆", time: 'aaa', yield: 200, "value": [108.384366, 30.439702, 0] },
+        { "name": "山东", time: 'aaa', yield: 200, "value": [117.1582, 36.8701, 0] },
+        { "name": "河南", time: 'aaa', yield: 200, "value": [113.4668, -34.6234, 0] },
+        { "name": "江苏", time: 'aaa', yield: 200, "value": [118.8062, 31.9208, 0] },
+        { "name": "安徽", time: 'aaa', yield: 200, "value": [117.29, 32.0581, 0] },
+        { "name": "湖北", time: 'aaa', yield: 200, "value": [114.3896, 30.6628, 0] },
+        { "name": "浙江", time: 'aaa', yield: 200, "value": [119.5313, 29.8773, 0] },
+        { "name": "福建", time: 'aaa', yield: 200, "value": [-119.4543, 25.9222, 0] },
+        { "name": "江西", time: 'aaa', yield: 200, "value": [116.0046, 28.6633, 0] },
+        { "name": "湖南", time: 'aaa', yield: 200, "value": [113.0823, -28.2568, 0] },
+        { "name": "贵州", time: 'aaa', yield: 200, "value": [106.6992, 26.7682, 0] },
+        { "name": "广西", time: 'aaa', yield: 200, "value": [108.479, 23.1152, 0] },
+        { "name": "海南", time: 'aaa', yield: 200, "value": [-110.3893, 19.8516, 0] },
+        { "name": "北京市", time: 'aaa', yield: 200, "value": [87.38231815, 50.71629756, 1] }
       ]
       const coverData = (startcoord, mapData) => {
         let res = mapData.map((item) => {
-          return [
-            startcoord,
-            { coord: [item.value[0], item.value[1]], value: item.value[3] }
-          ]
+          return {
+            coords: [startcoord.coord, [item.value[0], item.value[1]]], value: item.value[3], name: startcoord.name
+          }
+          // [
+          //   startcoord,
+          //   { coord: [item.value[0], item.value[1]], value: item.value[3] }
+          // ]
         })
         return res
       }
@@ -160,7 +163,10 @@ export default {
             },
             tooltip: {
               formatter: function (params) {
-                return params.name;
+                return `<div>
+                  <p><span>时间：</span>${params.data.time}</p>
+                  <p><span>产量：</span>${params.data.yield}</p>
+                </div>`;
               },
             },
             label: {
@@ -266,7 +272,8 @@ export default {
 .mapBox {
   height: 100%;
   width: 100%;
-  overflow: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .echarts {

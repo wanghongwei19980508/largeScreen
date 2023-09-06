@@ -16,7 +16,7 @@
             <el-input-number v-else-if="item.type === 'number'" v-model="searchData[item.prop]" class="mx-4"
               :min="item.min" :clearable="true" :max="item.max" :controls="item.controls"
               :controls-position="item.position" :placeholder="item.placeholder" :step="item.step ? item.step : 1"
-              :step-strictly="item.strictly ? true : false" :disabled="item.disabled"
+              :maxlength="item.maxlength" :step-strictly="item.strictly ? true : false" :disabled="item.disabled"
               :style="`width:${!item.width ? '350px' : typeof (item.width) == 'number' ? item.width + 'px' : item.width}`" />
 
             <!-- 密码框 -->
@@ -30,7 +30,7 @@
             <el-input v-if="item.type === 'textarea'" class="form_input" v-model="searchData[item.prop]" :clearable="true"
               :placeholder="item.placeholder" :disabled="item.disabled"
               :style="`width:${!item.width ? '350px' : typeof (item.width) == 'number' ? item.width + 'px' : item.width}`"
-              type="textarea" :autosize="item.autosize" :maxlength= "item.maxlength" :show-word-limit="item.showWordLimit">
+              type="textarea" :autosize="item.autosize" :maxlength="item.maxlength" :show-word-limit="item.showWordLimit">
             </el-input>
 
             <!-- 下拉框 -->

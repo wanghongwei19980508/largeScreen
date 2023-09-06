@@ -1,6 +1,5 @@
 <template>
   <div>
-    <loadingShow :loadingShow="loadingShow" />
     <panel :panelHeaderShow="false" :panelAsideWidth="'20vw'">
       <template #aside>
         <div class="asideBox">
@@ -101,6 +100,9 @@
         </div>
       </template>
     </panel>
+    <vpdf :title="'pdf查看'" :pdfDialogVisible="pdfDialogVisible"
+      :pdfUrl="'http://storage.xuetangx.com/public_assets/xuetangx/PDF/PlayerAPI_v1.0.6.pdf'"
+      @closeDialog="pdfDialogVisible = false"></vpdf>
   </div>
 </template>
 
@@ -109,17 +111,17 @@ import panel from '../components/panel.vue'
 import barChart from '../components/barChart.vue'
 import BlockTitle from '../components/BlockTitle.vue'
 import previewCard from '../components/previewCard.vue'
+import vpdf from '../components/vPDF.vue'
 import mapEcharts from './computent/echarts/flightDiagram.vue'
-import loadingShow from '../components/loading.vue'
 
 export default {
-  components: { BlockTitle, panel, barChart, previewCard, mapEcharts, loadingShow },
+  components: { BlockTitle, panel, barChart, previewCard, mapEcharts, vpdf },
   data() {
     return {
-      loadingShow: true,
       barEchartData: {},
       policyData: [],
       reportData: [],
+      pdfDialogVisible: false,
     }
   },
   mounted() {
@@ -139,14 +141,13 @@ export default {
       { img: 'https://hbimg.b0.upaiyun.com/539f0dde3ed1ef6f451381a85ac6ff807b2526911005e-n1NrWn_fw658', url: 'xxx' },
       { img: 'https://hbimg.b0.upaiyun.com/539f0dde3ed1ef6f451381a85ac6ff807b2526911005e-n1NrWn_fw658', url: 'xxx' },
     ]
-    this.loadingShow = false
   },
   methods: {
     expandView(row) {
       this.$router.push(row)
     },
     preview(row) {
-
+      this.pdfDialogVisible = true
     },
     download(row) {
 

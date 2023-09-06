@@ -45,7 +45,7 @@ export default {
     },
     panelBoxHeight: {
       type: String,
-      default: 'calc(100vh - 120px)',
+      default: 'calc(100vh - 102px)',
     }
   },
   created() {
@@ -90,12 +90,26 @@ export default {
 
 .el-header {
   .el-breadcrumb {
-    background: linear-gradient(45deg, #1b4ea770, #454e5a82);
-    padding: 0 20px;
+    position: relative;
+    padding: 0 0 0 80px;
     height: 60px;
     line-height: 60px;
     font-size: 18px;
     text-shadow: 4px -3px 2px #8692A5;
+    z-index: 1;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('../assets/title.png');
+      background-repeat: repeat;
+      background-size: 100% 100%;
+      z-index: -1;
+    }
 
     .no-redirect {
       color: white;
@@ -105,10 +119,6 @@ export default {
 
 .el-main {
   padding: 10px;
-}
-
-.el-container {
-  height: calc(100% - 60px);
 }
 
 .el-aside {

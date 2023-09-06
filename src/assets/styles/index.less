@@ -6,8 +6,15 @@
   background: linear-gradient(to bottom, #0D1F38, #0D1D35, #0D1E36);
 
   .el-dialog__header {
+    color: #e6ecf8;
     .el-dialog__title {
       color: #e6ecf8;
+    }
+
+    button {
+      background-color: #162A50;
+      color: #9099AD;
+      border-color: #1E4288;
     }
   }
 
@@ -40,7 +47,7 @@
 .el-input__inner,
 .el-range-input,
 .el-textarea__inner,
-.el-textarea .el-input__count{
+.el-textarea .el-input__count {
   background-color: #162A50;
   color: #9099AD;
   border-color: #1E4288;
@@ -115,12 +122,13 @@
 }
 
 
-.el-table__body-wrapper,
-div {
+.el-table__body-wrapper {
   .el-table__body {
     width: 100% !important;
   }
+}
 
+* {
   &::-webkit-scrollbar-track {
     background-color: #063570;
   }
@@ -134,5 +142,25 @@ div {
   &::-webkit-scrollbar-thumb {
     border-radius: 15px;
     background-color: #0257aa;
+  }
+}
+
+// 分页
+.el-pagination {
+
+  .btn-prev,
+  .btn-next,
+  .el-pager li {
+    background-color: #00306B;
+    border-color: #0962CB;
+    color: #f8faff;
+
+    &:disabled {
+      background-color: #405369;
+    }
+
+    &.active {
+      background-color: #0962CB;
+    }
   }
 }
