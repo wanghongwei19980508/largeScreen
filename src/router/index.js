@@ -6,6 +6,13 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '/',
+    // component: Title,
+    name: 'Index',
+    meta: { title: '产生链生态', icon: 'dashboard' },
+    component: () => import('../views/HomeView.vue'),
+  },
+  {
     path: '/index',
     component: Title,
     redirect: '/index',
@@ -14,7 +21,7 @@ const routes = [
       {
         path: '/',
         name: 'Index',
-        component: () => import('../views/HomeView.vue'),
+        component: () => import('../views/index.vue'),
       }, {
         path: '/index/flightDiagram',
         name: 'flightDiagram',
