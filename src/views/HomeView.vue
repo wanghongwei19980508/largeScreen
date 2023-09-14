@@ -100,9 +100,6 @@
         </div>
       </template>
     </panel>
-    <vpdf :title="'pdf查看'" :pdfDialogVisible="pdfDialogVisible"
-      :pdfUrl="'http://storage.xuetangx.com/public_assets/xuetangx/PDF/PlayerAPI_v1.0.6.pdf'"
-      @closeDialog="pdfDialogVisible = false"></vpdf>
   </div>
 </template>
 
@@ -111,17 +108,15 @@ import panel from '../components/panel.vue'
 import barChart from '../components/barChart.vue'
 import BlockTitle from '../components/BlockTitle.vue'
 import previewCard from '../components/previewCard.vue'
-import vpdf from '../components/vPDF.vue'
 import mapEcharts from './computent/echarts/flightDiagram.vue'
 
 export default {
-  components: { BlockTitle, panel, barChart, previewCard, mapEcharts, vpdf },
+  components: { BlockTitle, panel, barChart, previewCard, mapEcharts },
   data() {
     return {
       barEchartData: {},
       policyData: [],
       reportData: [],
-      pdfDialogVisible: false,
     }
   },
   mounted() {
@@ -145,9 +140,6 @@ export default {
   methods: {
     expandView(row) {
       this.$router.push(row)
-    },
-    preview(row) {
-      this.pdfDialogVisible = true
     },
     download(row) {
 

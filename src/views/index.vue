@@ -100,17 +100,15 @@
 import barChart from '../components/barChart.vue'
 import BlockTitle from '../components/BlockTitle.vue'
 import previewCard from '../components/previewCard.vue'
-import vpdf from '../components/vPDF.vue'
 import mapEcharts from './computent/echarts/flightDiagram.vue'
 
 export default {
-  components: { BlockTitle, barChart, previewCard, mapEcharts, vpdf },
+  components: { BlockTitle, barChart, previewCard, mapEcharts },
   data() {
     return {
       barEchartData: {},
       policyData: [],
       reportData: [],
-      pdfDialogVisible: false,
     }
   },
   mounted() {
@@ -134,9 +132,6 @@ export default {
   methods: {
     expandView(row) {
       this.$router.push(row)
-    },
-    preview(row) {
-      this.pdfDialogVisible = true
     },
     download(row) {
 
