@@ -11,6 +11,7 @@ import { MapChart } from 'echarts/charts'
 import loadBMap from '../../../utils/baiduapi'
 import { InternationalMap } from '../../../utils/InternationalMap'
 import { InternationalOutline } from '../../../utils/InternationalOutline'
+import { nameMap } from '../../../utils/countryNameComparisonTable'
 import { chinaMap, chinaMapOutline } from '../../../utils/chinaMap'
 import 'echarts/extension/bmap/bmap';
 
@@ -90,40 +91,48 @@ export default {
       }
       var series = [
         {
-          map: 'MapJson',
+          map: 'OutlineJson',
           type: 'map',
-          zoom: 1.2,
-          label: {
-            normal: {
-              show: false,
-              textStyle: {
-                color: '#fff'
-              }
-            },
-            emphasis: {
-              textStyle: {
-                color: '#fff',
-              },
-            }
-          },
+          zoom: 1.1,
+          aspectScale: 1,
+          nameMap: nameMap,
           top: '10%',
+          label: {
+            show: false,
+          },
           tooltip: {
             show: false
           },
           roam: false,
           itemStyle: {
-            normal: {
-              areaColor: 'transparent',
-              borderColor: 'rgba(0,255,255,.1)',
-              borderWidth: 1,
-            },
-            emphasis: {
-              areaColor: 'rgba(0,255,255,.1)',
+            areaColor: 'rgba(0,255,255,.02)',
+            borderColor: '#00ffff80',
+            borderWidth: 1.5,
+            shadowColor: '#00ffff80',
+            shadowOffsetX: 0,
+            shadowOffsetY: 4,
+            shadowBlur: 10,
+          },
+          emphasis: {
+            focus: 'self',
+            label: {
               textStyle: {
-                color: 'red'
-              }
+                color: '#fff',
+              },
+            },
+            itemStyle: {
+              areaColor: 'rgba(0,255,255,0.3)',
+              borderColor: 'rgba(0,255,255,0.7)',
+              borderWidth: 1,
             }
-          }
+          },
+          select: {
+            itemStyle: {
+              areaColor: 'rgba(0,255,255,0.7)',
+              borderColor: '#F19642',
+              borderWidth: 1,
+            }
+          },
         },
       ];
       [{ coord: [-60.00134568, 60.54246249], name: '西边来的' }, { coord: [107.00134568, -32.54246249], name: '南边来的' }].forEach((item, i) => {
@@ -146,6 +155,7 @@ export default {
               },
             },
             tooltip: {
+              show: false,
               formatter: function (params) {
                 return params.name;
               },
@@ -205,43 +215,84 @@ export default {
         tooltip: {
           trigger: 'item'
         },
-        color: ['#34c6bb'],
         geo: {
-          silent: true,
-          map: 'OutlineJson',
-          zoom: 1.2,
+          silent: false,
+          map: 'MapJson',
+          zoom: 1.1,
+          aspectScale: 1,
+          nameMap: nameMap,
           top: '10%',
+          roam: false,
           label: {
-            normal: {
-              show: false,
-              textStyle: {
-                color: '#fff'
-              }
+            show: false,
+          },
+          tooltip: {
+            formatter: function (params) {
+              return false;
             },
-            emphasis: {
+          },
+          itemStyle: {
+            areaColor: 'transparent',
+            borderColor: 'rgba(0,255,255,.1)',
+            borderWidth: 1,
+          },
+          emphasis: {
+            focus: 'self',
+            label: {
               textStyle: {
-                color: '#fff'
-              }
+                color: '#fff',
+              },
+            },
+            itemStyle: {
+              areaColor: 'rgba(0,255,255,0.3)',
+              borderColor: 'rgba(0,255,255,0.7)',
+              borderWidth: 1,
             }
           },
-          roam: false,
-          itemStyle: {
-            normal: {
-              areaColor: 'rgba(0,255,255,.02)',
-              borderColor: '#00ffff',
-              borderWidth: 1.5,
-              shadowColor: '#00ffff',
-              shadowOffsetX: 0,
-              shadowOffsetY: 4,
-              shadowBlur: 10,
-            },
-            emphasis: {
-              areaColor: 'transparent', //悬浮背景
-              textStyle: {
-                color: '#fff'
+          regions: [
+            {
+              name: '中国',
+              itemStyle: {
+                normal: {
+                  areaColor: '#231C15',
+                  borderColor: '#F19642',
+                  borderWidth: 2,
+                  shadowColor: '#F19642',
+                  shadowOffsetX: 0,
+                  shadowOffsetY: 4,
+                  shadowBlur: 10,
+                }
               }
-            }
-          }
+            },
+            {
+              name: '美国',
+              itemStyle: {
+                normal: {
+                  areaColor: '#1950A8',
+                  borderColor: '#F19642',
+                  borderWidth: 1.5,
+                  shadowColor: '#F19642',
+                  shadowOffsetX: 0,
+                  shadowOffsetY: 4,
+                  shadowBlur: 10,
+                }
+              }
+            },
+            {
+              name: '印度',
+              itemStyle: {
+                normal: {
+                  areaColor: '#1950A8',
+                  borderColor: '#F19642',
+                  borderWidth: 1.5,
+                  shadowColor: '#F19642',
+                  shadowOffsetX: 0,
+                  shadowOffsetY: 4,
+                  shadowBlur: 10,
+                }
+              }
+            },
+          ]
         },
         series: series
       }
@@ -277,7 +328,8 @@ export default {
 }
 
 .echarts {
-  width: 1326px;
+  /* width: 100%; */
+  min-width: 1500px;
   height: 100%;
 }
 </style>
