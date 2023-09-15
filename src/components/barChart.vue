@@ -1,5 +1,5 @@
 <template>
-  <div class='echartsBox' ref="bar-echart-ref"></div>
+  <div class='bar-echart-Box' ref="bar-echart-ref"></div>
 </template>
 <script>
 const echarts = require("echarts");
@@ -21,6 +21,10 @@ export default {
     legend: { // 是否展示图例
       type: Boolean,
       default: true,
+    },
+    interchange: { // 是否xy轴互换
+      type: Boolean,
+      default: false,
     },
   },
   data() {
@@ -70,19 +74,20 @@ export default {
         },
         xAxis: [
           {
-            type: 'category',
+            type: this.interchange ? 'value' : 'category',
             name: '',
-            data: this.barEchartData.xAxis,
+            data: this.interchange ? [] : this.barEchartData.xAxis,
             axisTick: {
               alignWithLabel: true
-            }
+            },
           }
         ],
         yAxis: [
           {
             name: '',
-            type: 'value'
-          }
+            type: this.interchange ? 'category' : 'value',
+            data: this.interchange ? this.barEchartData.xAxis : [],
+          },
         ],
       }
       option.series = this.barEchartData.series && this.barEchartData.series.map((item) => {
@@ -106,9 +111,11 @@ export default {
             show: true,
             start: 1,
             end: (10 / this.barEchartData.xAxis.length) * 100,
+            orient: this.interchange ? 'vertical' : 'horizontal',
           },
         ]
       }
+      // 是否显示legend
       if (this.barEchartData.series && this.barEchartData.series.length > 1 && this.legend) {
         let legendData = []
         this.barEchartData.series.forEach((item) => {
@@ -153,7 +160,7 @@ export default {
 }
 </script>
 <style scoped>
-.echartsBox {
+.bar-echart-Box {
   width: 100%;
   height: 100%;
 }

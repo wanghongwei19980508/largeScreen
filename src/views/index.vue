@@ -35,7 +35,7 @@
         <BlockTitle :type="'more'" :title="'产品报告'" @titleClick="expandView('/index/chartList')" />
         <div class="previewBox">
           <previewCard v-for="(row, index) in reportData" :key="index" :previewData="row" :previewImg="row.img"
-            @preview="preview" @download="download"></previewCard>
+            @download="download"></previewCard>
         </div>
       </div>
     </div>
