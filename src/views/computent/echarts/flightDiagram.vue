@@ -53,41 +53,40 @@ export default {
       // echarts.registerMap('OutlineJson', chinaMapOutline);
       var mapData = [
         [
-          { "name": "美国", time: 'aaa', yield: 82004, "value": [-65.91347205, 38.07253963, 0] },
-          { "name": "葡萄牙", time: 'aaa', yield: 32500, "value": [8.35741779, -44.70031083, 0] },
-          { "name": "菲律宾", time: 'aaa', yield: 34200, "value": [65.8055114, 49.47057901, 0] },
-          { "name": "新西兰", time: 'aaa', yield: 72004, "value": [75.73084376, -49.54063518, 0] },
-          { "name": "纳米比亚", time: 'aaa', yield: 45200, "value": [-51.88840662, 55.07229351, 0] },
+          { "name": "美国", time: '2021-01-03', yield: 82004, "value": [-101.36929, 39.78972, 3] },
+          { "name": "葡萄牙", time: '2021-07-09', yield: 32500, "value": [-8.61881, 39.63034, 0] },
+          { "name": "菲律宾", time: '2021-04-08', yield: 34200, "value": [122.00750, 12.59588, 0] },
+          { "name": "文莱", time: '2023-12-25', yield: 2200, "value": [114.72767, 4.53528, 0] },
+          { "name": "喀麦隆", time: '2023-12-25', yield: 2070, "value": [11.75606, 3.84056, 0] },
+          { "name": "新西兰", time: '2021-05-08', yield: 72004, "value": [170.05699, -44.20668, 2] },
+          { "name": "纳米比亚", time: '2021-06-06', yield: 45200, "value": [15.74513, -22.59550, 1] },
         ],
         [
-          { "name": "缅甸", time: 'aaa', yield: 76200, "value": [115.00065627, 53.04648107, 0] },
-          { "name": "墨西哥", time: 'aaa', yield: 9200, "value": [69.4735132, 51.29311985, 0] },
-          { "name": "斯里兰卡", time: 'aaa', yield: 23200, "value": [-44.87612302, 39.58523026, 0] },
-          { "name": "肯尼亚", time: 'aaa', yield: 23400, "value": [61.59816903, 31.06292714, 0] },
-          { "name": "冰岛", time: 'aaa', yield: 2080, "value": [102.05457995, 59.8242106, 0] },
-          { "name": "印度尼西亚", time: 'aaa', yield: 67200, "value": [87.4901852, -61.15259914, 0] },
+          { "name": "缅甸", time: '2022-04-23', yield: 76200, "value": [95.57907, 21.56923, 3] },
+          { "name": "墨西哥", time: '2022-06-30', yield: 9200, "value": [-104.17650, 26.10325, 0] },
+          { "name": "斯里兰卡", time: '2022-02-28', yield: 23200, "value": [80.62697, 8.47649, 1] },
+          { "name": "肯尼亚", time: '2022-06-06', yield: 23400, "value": [37.90619, -0.02356, 1] },
+          { "name": "冰岛", time: '2022-09-16', yield: 2080, "value": [-18.24764, 65.06115, 0] },
+          { "name": "孟加拉国", time: '2023-12-25', yield: 21230, "value": [90.23915, 24.19725, 1] },
+          { "name": "哥伦比亚", time: '2023-12-25', yield: 2800, "value": [-73.08441, 3.49247, 0] },
+          { "name": "印度尼西亚", time: '2022-12-25', yield: 67200, "value": [119.86984, -4.32047, 2] },
         ],
         [
-          { "name": "圭亚那", time: 'aaa', yield: 200, "value": [147.15029084, 31.46337121, 0] },
-          { "name": "几内亚比绍", time: 'aaa', yield: 22060, "value": [0.11, 29.97, 0] },
-          { "name": "埃塞俄比亚", time: 'aaa', yield: 20650, "value": [-103.9526, 1.7617, 0] },
-          { "name": "阿尔及利亚", time: 'aaa', yield: 2020, "value": [113.4668, -34.6234, 0] },
-          { "name": "北塞浦路斯", time: 'aaa', yield: 23400, "value": [98.8062, -31.9208, 0] },
-          { "name": "哥伦比亚", time: 'aaa', yield: 2800, "value": [-60.00134568, 60.54246249, 0] },
-          { "name": "喀麦隆", time: 'aaa', yield: 2070, "value": [-161.3896, 81.6628, 0] },
-          { "name": "加拿大", time: 'aaa', yield: 202340, "value": [29.5313, 29.8773, 0] },
-          { "name": "博茨瓦纳", time: 'aaa', yield: 20460, "value": [-119.4543, 25.9222, 0] },
-          { "name": "文莱", time: 'aaa', yield: 2200, "value": [73.0823, -18.2568, 0] },
-          { "name": "百慕大", time: 'aaa', yield: 2050, "value": [-20.6992, 26.7682, 0] },
-          { "name": "波斯尼亚和黑塞哥维那", time: 'aaa', yield: 200, "value": [30.479, 23.1152, 0] },
-          { "name": "孟加拉国", time: 'aaa', yield: 21230, "value": [-110.3893, 19.8516, 0] },
-          { "name": "阿塞拜疆", time: 'aaa', yield: 53, "value": [27.38231815, 50.71629756, 1] }
+          { "name": "圭亚那", time: '2023-12-25', yield: 200, "value": [-58.54359, 2.54955, 0] },
+          { "name": "几内亚比绍", time: '2023-12-25', yield: 22060, "value": [-14.93288, 12.04795, 1] },
+          { "name": "埃塞俄比亚", time: '2023-12-25', yield: 20650, "value": [39.58070, 8.61105, 1] },
+          { "name": "阿尔及利亚", time: '2023-12-25', yield: 2020, "value": [2.55060, 28.16212, 0] },
+          { "name": "北塞浦路斯", time: '2023-12-25', yield: 23400, "value": [33.82938, 35.35131, 1] },
+          { "name": "加拿大", time: '2023-12-25', yield: 202340, "value": [-106.34677, 56.13037, 3] },
+          { "name": "博茨瓦纳", time: '2023-12-25', yield: 20460, "value": [21.97458, -23.96469, 1] },
+          { "name": "百慕大", time: '2023-12-25', yield: 2050, "value": [-64.75050, 32.30780, 0] },
+          { "name": "阿塞拜疆", time: '2023-12-25', yield: 53, "value": [47.67639, 40.67088, 1] }
         ]
       ]
       const coverData = (startcoord, mapData) => {
-        let res = mapData.map((item) => {
+        let res = mapData.map((item, index) => {
           return {
-            coords: [startcoord.coord, [item.value[0], item.value[1]]], value: item.value[3], name: startcoord.name
+            coords: [startcoord.coord, [item.value[0], item.value[1]]], value: item.value[2], name: startcoord.namem, lineStyle: { width: item.value[2] * 2 + 1, }, effect: { symbolSize: item.value[2] * 2 + 5 }
           }
           // [
           //   startcoord,
@@ -105,7 +104,8 @@ export default {
         baseOption: {
           timeline: {
             autoPlay: false,
-            data: ['2002', '2003', '2004'],
+            currentIndex: 2,
+            data: ['2021', '2022', '2023'],
           },
           geo: [{
             silent: false,
@@ -348,10 +348,9 @@ export default {
                 borderColor: '#ffffff00',
                 padding: 0,
                 formatter: function (params) {
-                  console.log(params);
                   return `<div class="scatterTooltip">
-                  <p><span>时间：</span>${params.data.time}</p>
-                  <p><span>产量：</span>${params.data.yield}</p>
+                  <div class="scatterTooltipText"><p>时间：</p>${params.data.time}</p></div>
+                  <div class="scatterTooltipText"><p>产值：</p><p>${params.data.yield}</p></div>
                 </div>`;
                 },
               },
@@ -372,7 +371,7 @@ export default {
               },
               symbol: 'circle',
               symbolSize: function (val) {
-                return 5 + val[2] * 5; //圆环大小
+                return 3 + val[2] * 3; //圆环大小
               },
               itemStyle: {
                 normal: {
@@ -401,6 +400,7 @@ export default {
         this.mapEchart.on('timelinechanged', params => {
           // 获取当前timeline的切换索引
           const currentIndex = params.currentIndex;
+          this.option.baseOption.timeline.currentIndex = currentIndex
           this.option.baseOption.geo[0].regions = [
             {
               name: '中国',
@@ -466,7 +466,7 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style scoped lang="less">
 .mapBox {
   position: relative;
   height: 100%;
@@ -494,5 +494,16 @@ export default {
   background-size: 100% 100%;
   padding: 20px;
   color: #fff;
+
+  .scatterTooltipText {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+
+    p:nth-of-type(1) {
+      font-size: 16px;
+    }
+  }
 }
 </style>
