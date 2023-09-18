@@ -6,11 +6,15 @@
         <mapEcharts></mapEcharts>
       </div>
     </div>
-    <div class="asideBox">
-      <div class="asideContent">
-        <BlockTitle :type="'more'" :title="'国际制造业数据库'" @titleClick="expandView('/index/chartList')" />
+    <div class="internationalContent">
+      <BlockTitle :type="'more'" :title="'国际制造业数据库'" @titleClick="expandView('/index/chartList')" />
+      <div class="echart-International">
+        <barChart ref="barEchartCompRef" :barEchartData="barEchartData" />
+        <barChart ref="barEchartCompRef" :barEchartData="barEchartData" />
         <barChart ref="barEchartCompRef" :barEchartData="barEchartData" />
       </div>
+    </div>
+    <div class="twoBox">
       <div class="asideContent">
         <BlockTitle :type="'more'" :title="'国际工业链政策'" @titleClick="expandView('/index/chartList')" />
         <el-table :height="'calc(100% - 40px)'" :data="policyData">
@@ -31,16 +35,13 @@
           </el-table-column>
         </el-table>
       </div>
-      <div class="asideContent">
-        <BlockTitle :type="'more'" :title="'产品报告'" @titleClick="expandView('/index/chartList')" />
-        <div class="previewBox">
-          <previewCard v-for="(row, index) in reportData" :key="index" :previewData="row" :previewImg="row.img"
-            @download="download"></previewCard>
-        </div>
+      <!-- <div class="asideContent">
+      <BlockTitle :type="'more'" :title="'产品报告'" @titleClick="expandView('/index/chartList')" />
+      <div class="previewBox">
+        <previewCard v-for="(row, index) in reportData" :key="index" :previewData="row" :previewImg="row.img"
+          @download="download"></previewCard>
       </div>
-    </div>
-
-    <div class="rightBox">
+    </div> -->
       <div class="asideContent">
         <BlockTitle :type="'more'" :title="'企业外迁动态'" @titleClick="expandView('/index/chartList')" />
         <el-table :height="'calc(100% - 40px)'" :data="policyData">
@@ -56,6 +57,8 @@
           </el-table-column>
         </el-table>
       </div>
+    </div>
+    <div class="twoBox">
       <div class="asideContent">
         <BlockTitle :type="'more'" :title="'国际冲击'" @titleClick="expandView('/index/chartList')" />
         <el-table :height="'calc(100% - 40px)'" :data="policyData">
@@ -86,10 +89,11 @@
         <div class="industrial">
           <div class="industrialText">
             <div></div>
-            产业救济专门为受打压企业提供申诉办理、产业扶
-            持、产融合作等服务。
+            产业救济专门为受打压企业提供申诉办理、产业扶持、产融合作等服务。
           </div>
-          <el-button type="primary" size="mini" @click="expandView('/index/industrialRelief')">立即申请</el-button>
+          <div class="industrialButton">
+            <el-button type="primary" size="mini" @click="expandView('/index/industrialRelief')">立即申请</el-button>
+          </div>
         </div>
       </div>
     </div>
@@ -143,11 +147,8 @@ export default {
 <style lang="less" scoped>
 .topBox {
   height: 640px;
-  width: 100%;
-
-  // width: calc(60vw - 20px);
-  // height: calc(100% - 10px);
-  // padding: 10px 0;
+  width: calc(100% - 20px);
+  margin: 8px 10px;
 
   .echarts {
     overflow: auto;
@@ -156,76 +157,40 @@ export default {
   }
 }
 
-.asideBox {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: calc(100% - 20px);
-  padding: 10px 0;
+.internationalContent {
+  width: calc(100% - 20px);
+  margin: 8px 10px;
+  border: #123370 2px solid;
+  box-sizing: border-box;
 
-  .asideContent {
-    height: calc(33.3% - 20px);
-    width: 100%;
-    margin: 8px 0;
-    border: #123370 2px solid;
-    box-sizing: border-box;
-
-    .echartsBox {
-      height: calc(100% - 40px);
-    }
-  }
-
-  .tableText {
-    white-space: nowrap; //不换行
-    overflow: hidden; //超出部分隐藏
-    text-overflow: ellipsis; //文本溢出显示省略号
-  }
-
-  .previewBox {
-    height: calc(100% - 60px);
-    width: 100%;
+  .echart-International {
+    height: 400px;
     display: flex;
-    flex-wrap: wrap;
-    overflow: auto;
-    padding: 10px 0;
-    align-content: flex-start;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    align-items: center;
 
-    .previewCard {
-      width: calc(50% - 15px);
-      height: 90px;
-      margin: 5px 0;
+    .bar-echart-Box {
+      height: calc(100% - 40px);
+      width: 30%;
     }
   }
 }
 
-
-
-
-
-.rightBox {
-  width: 20vw;
-  height: 100%;
-  margin: 0 10px;
+.twoBox {
+  height: 400px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
 
   .asideContent {
-    height: calc(33.3% - 20px);
-    width: 100%;
-    margin: 8px 0;
+    height: calc(100% - 20px);
+    width: 50%;
+    margin: 8px 10px;
     border: #123370 2px solid;
     box-sizing: border-box;
 
     .industrial {
       height: calc(100% - 60px);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px;
+      position: relative;
+      padding: 10px 30px;
 
       .industrialText {
         font-size: 13px;
@@ -242,13 +207,36 @@ export default {
           margin: 0 10px 0 0;
         }
       }
-    }
-  }
 
-  .tableText {
-    white-space: nowrap; //不换行
-    overflow: hidden; //超出部分隐藏
-    text-overflow: ellipsis; //文本溢出显示省略号
+      .industrialButton {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+      }
+    }
+
+    .tableText {
+      white-space: nowrap; //不换行
+      overflow: hidden; //超出部分隐藏
+      text-overflow: ellipsis; //文本溢出显示省略号
+    }
+
+    // .previewBox {
+    //   height: calc(100% - 60px);
+    //   width: 100%;
+    //   display: flex;
+    //   flex-wrap: wrap;
+    //   overflow: auto;
+    //   padding: 10px 0;
+    //   align-content: flex-start;
+    //   justify-content: space-around;
+
+    //   .previewCard {
+    //     width: calc(50% - 15px);
+    //     height: 90px;
+    //     margin: 5px 0;
+    //   }
+    // }
   }
 }
 
