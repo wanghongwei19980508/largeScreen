@@ -1,5 +1,5 @@
-body{
-  background: linear-gradient(to bottom, #0D1F38, #0D1D35, #0D1E36);
+body {
+  background: #0D1847;
 }
 
 // form表单,dialog弹出框
@@ -11,6 +11,7 @@ body{
 
   .el-dialog__header {
     color: #e6ecf8;
+
     .el-dialog__title {
       color: #e6ecf8;
     }
@@ -118,6 +119,10 @@ body{
 .el-button--primary {
   background-color: #00306B;
   border-color: #0962CB;
+
+  &.is-disabled {
+    background-color: #7e8fa1;
+  }
 }
 
 // radio选择器
@@ -167,4 +172,13 @@ body{
       background-color: #0962CB;
     }
   }
+}
+
+@font-face {
+  font-family: 'YouSheBiaoTiHei';
+  src: url('./YouSheBiaoTiHei.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'YouSheBiaoTiHei-Regular';
+  src: url('./YouSheBiaoTiHei-Regular.ttf') format('truetype');
 }
