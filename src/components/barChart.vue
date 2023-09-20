@@ -67,10 +67,10 @@ export default {
           }
         },
         grid: {
-          left: '10%',
+          left: '50px',
           right: '0%',
           bottom: this.barEchartData.xAxis && this.barEchartData.xAxis.length > 10 ?
-            '70px' : '10%'
+            '70px' : '20px'
         },
         xAxis: [
           {
