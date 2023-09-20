@@ -9,15 +9,24 @@
     <div class="internationalContent">
       <BlockTitle :type="'more'" :title="'国际制造业数据库'" @titleClick="expandView('/index/chartList')" />
       <div class="echart-International">
-        <barChart ref="barEchartCompRef" :barEchartData="barEchartData" />
-        <barChart ref="barEchartCompRef" :barEchartData="barEchartData" />
-        <barChart ref="barEchartCompRef" :barEchartData="barEchartData" />
+        <div class="echarts">
+          <BlockTitle :type="'spread'" @titleClick="dialogView('1')" :showTitleBG="false" :title="'GDP'" />
+          <barChart ref="barEchartCompRef" :barEchartData="barEchartData" />
+        </div>
+        <div class="echarts">
+          <BlockTitle :type="'spread'" @titleClick="dialogView('2')" :showTitleBG="false" :title="'进口'" />
+          <barChart ref="barEchartCompRef" :barEchartData="barEchartData" />
+        </div>
+        <div class="echarts">
+          <BlockTitle :type="'spread'" @titleClick="dialogView('3')" :showTitleBG="false" :title="'出口'" />
+          <barChart ref="barEchartCompRef" :barEchartData="barEchartData" />
+        </div>
       </div>
     </div>
     <div class="twoBox">
       <div class="asideContent">
         <BlockTitle :type="'more'" :title="'国际工业链政策'" @titleClick="expandView('/index/chartList')" />
-        <el-table :height="'calc(100% - 40px)'" :data="policyData">
+        <el-table class="hide-header" :height="'calc(100% - 40px)'" :data="policyData">
           <el-table-column prop="title" label="标题" min-width="45%" header-align="left">
             <template v-slot="scope">
               <div class="tableText">{{ scope.row.title }}</div>
@@ -35,16 +44,9 @@
           </el-table-column>
         </el-table>
       </div>
-      <!-- <div class="asideContent">
-      <BlockTitle :type="'more'" :title="'产品报告'" @titleClick="expandView('/index/chartList')" />
-      <div class="previewBox">
-        <previewCard v-for="(row, index) in reportData" :key="index" :previewData="row" :previewImg="row.img"
-          @download="download"></previewCard>
-      </div>
-    </div> -->
       <div class="asideContent">
         <BlockTitle :type="'more'" :title="'企业外迁动态'" @titleClick="expandView('/index/chartList')" />
-        <el-table :height="'calc(100% - 40px)'" :data="policyData">
+        <el-table class="hide-header" :height="'calc(100% - 40px)'" :data="policyData">
           <el-table-column prop="title" label="标题" min-width="70%" header-align="left">
             <template v-slot="scope">
               <div class="tableText">{{ scope.row.title }}</div>
@@ -97,6 +99,30 @@
         </div>
       </div>
     </div>
+    <el-dialog :visible.sync="dialogVisible" width="800px" top="5vh" :show-close="false">
+      <span slot="title">
+        <BlockTitle />
+        <el-form ref="form" :model="dialogForm" label-width="80px" size="mini" style="margin-top: 22px;">
+          <el-row>
+            <el-col :span="8">
+              <el-form-item label="活动名称">
+                <el-input v-model="dialogForm.name"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="8">
+              <el-form-item label="活动时间">
+                <el-date-picker v-model="dialogForm.time" type="daterange" range-separator="至" start-placeholder="开始日期"
+                  end-placeholder="结束日期">
+                </el-date-picker>
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </el-form>
+      </span>
+      <div class="dialogEcharts" v-if="dialogVisible">
+        <barChart ref="barEchartCompRef" :barEchartData="dialogData" />
+      </div>
+    </el-dialog>
   </div>
 </template>
   
@@ -110,13 +136,22 @@ export default {
   components: { BlockTitle, barChart, previewCard, mapEcharts },
   data() {
     return {
-      barEchartData: {},
-      policyData: [],
-      reportData: [],
+      barEchartData: {}, // 统计图1
+      policyData: [],  // label1
+      dialogVisible: false, // 统计图弹窗
+      dialogForm: { // 统计图选择表框
+        name: null,
+        time: null,
+      },
+      dialogData: {}, // 统计图数据
+      requestInterface: {
+        '1': '接口1',
+        '2': '接口2',
+        '3': '接口3'
+      }
     }
   },
   mounted() {
-    console.log(this.$route);
     this.barEchartData = {
       xAxis: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
       series: [{ name: '数据一', data: [10, 52, 200, 334, 390, 330, 220,] }, { name: '数据2', data: [10, 52, 200, 334, 390, 330, 220,], type: 'line' }],
@@ -125,20 +160,26 @@ export default {
       { title: '捷爱士光电科技袜子星礼卡你擦', source: '半导体半导体半导体', date: '2022-02-02' },
       { title: '捷爱士光电科技袜子星礼卡你擦', source: '半导体半导体半导体', date: '2022-02-02' },
       { title: '捷爱士光电科技袜子星礼卡你擦', source: '半导体半导体半导体', date: '2022-02-02' },
-    ]
-    this.reportData = [
-      { img: 'https://hbimg.b0.upaiyun.com/539f0dde3ed1ef6f451381a85ac6ff807b2526911005e-n1NrWn_fw658', url: 'xxx' },
-      { img: 'https://hbimg.b0.upaiyun.com/539f0dde3ed1ef6f451381a85ac6ff807b2526911005e-n1NrWn_fw658', url: 'xxx' },
-      { img: 'https://hbimg.b0.upaiyun.com/539f0dde3ed1ef6f451381a85ac6ff807b2526911005e-n1NrWn_fw658', url: 'xxx' },
-      { img: 'https://hbimg.b0.upaiyun.com/539f0dde3ed1ef6f451381a85ac6ff807b2526911005e-n1NrWn_fw658', url: 'xxx' },
+      { title: '捷爱士光电科技袜子星礼卡你擦', source: '半导体半导体半导体', date: '2022-02-02' },
+      { title: '捷爱士光电科技袜子星礼卡你擦', source: '半导体半导体半导体', date: '2022-02-02' },
+      { title: '捷爱士光电科技袜子星礼卡你擦', source: '半导体半导体半导体', date: '2022-02-02' },
+      { title: '捷爱士光电科技袜子星礼卡你擦', source: '半导体半导体半导体', date: '2022-02-02' },
+      { title: '捷爱士光电科技袜子星礼卡你擦', source: '半导体半导体半导体', date: '2022-02-02' },
     ]
   },
   methods: {
+    // 跳转页面
     expandView(row) {
       this.$router.push(row)
     },
-    download(row) {
-
+    // 统计图弹窗
+    dialogView(item) {
+      // this.requestInterface[item]
+      this.dialogData = {
+        xAxis: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        series: [{ name: '数据一', data: [10, 52, 200, 334, 390, 330, 220,] }, { name: '数据2', data: [10, 52, 200, 334, 390, 330, 220,], type: 'line' }],
+      }
+      this.dialogVisible = true
     }
   }
 }
@@ -160,31 +201,42 @@ export default {
 .internationalContent {
   width: calc(100% - 20px);
   margin: 8px 10px;
-  border: #123370 2px solid;
+  // border: #123370 2px solid;
   box-sizing: border-box;
 
   .echart-International {
     height: 400px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
+    overflow-x: auto;
 
-    .bar-echart-Box {
-      height: calc(100% - 40px);
-      width: 30%;
+    .echarts {
+      height: calc(100% - 0px);
+      width: calc(33.3% - 20px);
+      min-width: 400px;
+      padding-right: 20px;
+
+      &:nth-of-type(3) {
+        padding-right: 0;
+      }
+
+      .bar-echart-Box {
+        height: calc(100% - 40px)
+      }
     }
   }
 }
 
 .twoBox {
   height: 400px;
+
   display: flex;
 
   .asideContent {
-    height: calc(100% - 20px);
-    width: 50%;
+    width: calc(50% - 20px);
     margin: 8px 10px;
-    border: #123370 2px solid;
+    // border: #123370 2px solid;
     box-sizing: border-box;
 
     .industrial {
@@ -242,5 +294,19 @@ export default {
 
 ::v-deep .el-table {
   font-size: 12px;
+}
+
+.hide-header {
+  ::v-deep .el-table__header-wrapper {
+    display: none;
+  }
+}
+
+.dialogEcharts {
+  width: 100%;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
 </style>
