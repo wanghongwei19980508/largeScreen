@@ -26,7 +26,7 @@
         </div>
       </template>
     </panel>
-    <el-dialog :visible.sync="dialogVisible" width="80%" top="5vh" :show-close="false">
+    <el-dialog :visible.sync="dialogVisible" width="800px" top="5vh" :show-close="false">
       <span slot="title">
         <BlockTitle />
         <el-form ref="form" :model="dialogForm" label-width="80px" size="mini" style="margin-top: 22px;">
@@ -61,17 +61,17 @@ export default {
   components: { panel, barChart, BlockTitle },
   data() {
     return {
-      dialogVisible: false,
-      dialogForm: {
+      dialogVisible: false, // 统计图弹窗
+      dialogForm: { // 统计图选择表框
         name: null,
         time: null,
       },
-      dialogData: {},
-      barEchartData: {},
+      dialogData: {}, // 统计图数据
+      barEchartData: {}, // 
       barEchartData1: {
         xAxis: ['1', '2', '3', '4', '5', '6', '7', '1', '2', '3', '4', '5', '6', '7'],
         series: [{ name: '数据一', data: [10, 52, 200, 334, 390, 330, 220,], color: '#fffac1' }, { name: '数据2', data: [10, 52, 200, 334, 390, 330, 220,], type: 'line', areaStyle: true }],
-      },
+      }, // 
     }
   },
   mounted() {
@@ -108,8 +108,10 @@ export default {
 
   .echarts {
     width: 30%;
-    height: calc(40vh + 70px);
-    margin: 0 1.5% 10px;
+    min-width: 400px;
+    height: 440px;
+    padding: 0 10px;
+    margin: 0 1% 10px;
     display: flex;
     flex-direction: column;
     align-items: stretch;
