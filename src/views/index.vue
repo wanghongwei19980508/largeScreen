@@ -155,6 +155,8 @@ export default {
     this.barEchartData = {
       xAxis: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
       series: [{ name: '数据一', data: [10, 52, 200, 334, 390, 330, 220,] }, { name: '数据2', data: [10, 52, 200, 334, 390, 330, 220,], type: 'line' }],
+      splitLineType: 'dashed',
+      name: '11'
     }
     this.policyData = [
       { title: '捷爱士光电科技袜子星礼卡你擦', source: '半导体半导体半导体', date: '2022-02-02' },
@@ -178,6 +180,8 @@ export default {
       this.dialogData = {
         xAxis: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
         series: [{ name: '数据一', data: [10, 52, 200, 334, 390, 330, 220,] }, { name: '数据2', data: [10, 52, 200, 334, 390, 330, 220,], type: 'line' }],
+        splitLineType: 'dashed',
+        name: '11'
       }
       this.dialogVisible = true
     }
@@ -245,18 +249,19 @@ export default {
       padding: 10px 30px;
 
       .industrialText {
-        font-size: 13px;
-        line-height: 1.5;
+        font-size: 16px;
+        line-height: 60px;
         color: white;
         text-align: left;
+        color: #E1EAFA;
 
         div {
-          width: 50px;
-          height: 50px;
-          background-color: #123370;
+          width: 58px;
+          height: 58px;
+          background-image: url('../assets/Frame.png');
           background-size: 100% 100%;
           float: left;
-          margin: 0 10px 0 0;
+          margin: 1px 10px 1px 0;
         }
       }
 
@@ -293,7 +298,7 @@ export default {
 }
 
 ::v-deep .el-table {
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .hide-header {
