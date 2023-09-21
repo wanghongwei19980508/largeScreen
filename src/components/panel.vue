@@ -1,12 +1,12 @@
 <template>
   <div>
-    <el-container class="panelBox" :style="{ height: `${panelBoxHeight}` }">
+    <el-container class="panelBox" :style="{ minHeight: `${panelBoxHeight}` }">
       <el-header v-show="panelHeaderShow">
         <el-breadcrumb separator="/">
           <el-breadcrumb-item v-for="(item, index) in breadcrumbList" :key="index">
-            <span v-if="item.redirect === 'noRedirect' || index == breadcrumbList.length - 1" class="no-redirect">{{
+            <span v-if="item.redirect === 'noRedirect' || index == breadcrumbList.length - 1" class="titleContent">{{
               item.meta.title }}</span>
-            <a v-else @click.prevent="handleLink(item)">{{ item.meta.title }}</a>
+            <a v-else class="titleContent" @click.prevent="handleLink(item)">{{ item.meta.title }}</a>
           </el-breadcrumb-item>
         </el-breadcrumb>
       </el-header>
@@ -91,28 +91,35 @@ export default {
 .el-header {
   .el-breadcrumb {
     position: relative;
-    padding: 0 0 0 80px;
+    padding: 0 0 0 60px;
     height: 60px;
     line-height: 60px;
-    font-size: 18px;
-    text-shadow: 4px -3px 2px #8692A5;
+    width: 500px;
     z-index: 1;
+    background-image: url('../assets/title.png');
+    background-repeat: repeat;
+    background-size: 100% 100%;
 
     &::before {
       content: "";
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('../assets/title.png');
+      top: 22px;
+      left: 15px;
+      width: 30px;
+      height: 15px;
+      background-image: url('../assets/titleIcon.png');
       background-repeat: repeat;
       background-size: 100% 100%;
       z-index: -1;
     }
 
-    .no-redirect {
-      color: white;
+    .titleContent {
+      // font-weight: bold;
+      font-size: 20px;
+      font-family: 'YouSheBiaoTiHei-Regular', 'YouSheBiaoTiHei';
+      background: linear-gradient(180deg, #FFFFFF 0%, #B1CCFF 83%, #9CBFFF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
   }
 }
