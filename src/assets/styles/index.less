@@ -6,7 +6,8 @@ body {
 .el-form,
 .el-dialog,
 .el-table,
-.el-steps--simple {
+.el-steps--simple,
+.el-scrollbar {
   background: linear-gradient(to bottom, #0D1F38, #0D1D35, #0D1E36);
 
   .el-dialog__header {
@@ -21,6 +22,11 @@ body {
       color: #9099AD;
       border-color: #1E4288;
     }
+  }
+
+  .el-select-dropdown__item.hover {
+    background-color: #1f3e7a;
+    color: #9099AD;
   }
 
   .el-form-item__label {
@@ -48,6 +54,9 @@ body {
   }
 }
 
+.el-select-dropdown {
+  border-color: #1E4288;
+}
 
 .el-input__inner,
 .el-range-input,
@@ -178,6 +187,7 @@ body {
   font-family: 'YouSheBiaoTiHei';
   src: url('./YouSheBiaoTiHei.ttf') format('truetype');
 }
+
 @font-face {
   font-family: 'YouSheBiaoTiHei-Regular';
   src: url('./YouSheBiaoTiHei-Regular.ttf') format('truetype');

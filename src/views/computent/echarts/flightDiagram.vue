@@ -1,12 +1,15 @@
 <template>
   <div class="mapBox" v-loading="Loading" element-loading-text="地图绘制中，请耐心等待..."
     element-loading-background="rgba(0, 0, 0, 0.4)">
-    <div class="selectBox">
-      <el-select v-model="firmId" placeholder="请选择" @change="changeFirmId">
-        <el-option v-for="item in selectOptions" :key="item.value" :label="item.label" :value="item.value">
-        </el-option>
-      </el-select>
-    </div>
+    <el-form class="selectBox" label-width="80px">
+      <el-form-item label="选择企业">
+        <el-select v-model="firmId" placeholder="请选择" @change="changeFirmId">
+          <el-option v-for="item in selectOptions" :key="item.value" :label="item.label" :value="item.value">
+          </el-option>
+        </el-select>
+      </el-form-item>
+    </el-form>
+    <div class="echarts-title-icon">·</div>
     <div ref="echart-map-ref" class="echarts"></div>
   </div>
 </template>
@@ -134,7 +137,9 @@ export default {
         new echarts.graphic.LinearGradient(0, 0, 1, 0, [{ offset: 0, color: '#94C9FF' }, { offset: 1, color: '#ff0000' }]),
         new echarts.graphic.LinearGradient(0, 0, 1, 0, [{ offset: 0, color: '#94C9FF' }, { offset: 1, color: '#00ff00' }]),
         new echarts.graphic.LinearGradient(0, 0, 1, 0, [{ offset: 0, color: '#94C9FF' }, { offset: 1, color: '#0000ff' }]),
-        new echarts.graphic.LinearGradient(0, 0, 1, 0, [{ offset: 0, color: '#94C9FF' }, { offset: 1, color: '#275BC1' }])
+        new echarts.graphic.LinearGradient(0, 0, 1, 0, [{ offset: 0, color: '#94C9FF' }, { offset: 0.8, color: '#275BC1' }]),
+        new echarts.graphic.LinearGradient(1, 1, 1, 1, [{ offset: 0, color: '#fff' }, { offset: 1, color: '#7AEEF7' }]),
+        new echarts.graphic.LinearGradient(1, 0, 1, 1, [{ offset: 0, color: '#fff' }, { offset: 0.4, color: '#FFA755' }])
       ];
       const coverData = (startcoord, mapData) => {
         let res = mapData.map((item, index) => {
@@ -181,8 +186,8 @@ export default {
               show: false
             },
             itemStyle: {
-              areaColor: 'transparent',
-              borderColor: 'rgba(0,255,255,.1)',
+              areaColor: '#00276640',
+              borderColor: '#275BC101',
               borderWidth: 1,
             },
             emphasis: {
@@ -204,9 +209,9 @@ export default {
                 itemStyle: {
                   normal: {
                     areaColor: '#231C15',
-                    borderColor: '#F19642',
+                    borderColor: '#FF9E45',
                     borderWidth: 2,
-                    shadowColor: '#F19642',
+                    shadowColor: '#FF9E45',
                     shadowOffsetX: 0,
                     shadowOffsetY: 4,
                     shadowBlur: 10,
@@ -219,9 +224,9 @@ export default {
                   itemStyle: {
                     normal: {
                       areaColor: '#1950A8',
-                      borderColor: '#F19642',
+                      borderColor: '#FF9E45',
                       borderWidth: 1.5,
-                      shadowColor: '#F19642',
+                      shadowColor: '#FF9E45',
                       shadowOffsetX: 0,
                       shadowOffsetY: 4,
                       shadowBlur: 10,
@@ -247,8 +252,8 @@ export default {
               show: false
             },
             itemStyle: {
-              areaColor: 'rgba(0,255,255,.02)',
-              borderColor: '#00ffff80',
+              areaColor: '#00276602',
+              borderColor: '#275BC180',
               borderWidth: 1.5,
               // shadowColor: '#00ffff80',
               // shadowOffsetX: 0,
@@ -281,7 +286,7 @@ export default {
             },
             title: {
               text: "{a|产能排行榜（吨）}",
-              subtext: "{b|□}",
+              // subtext: "{b|□}",
               top: 10,
               right: 0,
               width: 200,
@@ -316,10 +321,10 @@ export default {
                     // },
                     fontSize: 20,
                     color: '#7AEEF7',
-                    textBorderColor: '#7AEEF7',
+                    textBorderColor: colors[3],
                     textBorderWidth: 20,
                     textBorderType: 'solid',
-                    align: 'center',
+                    align: 'right',
                     padding: [0, 0, 0, 20]
                   },
                 },
@@ -348,7 +353,7 @@ export default {
                   show: false,
                   margin: 1,
                   textStyle: {
-                    color: '#aaa'
+                    color: '#E1EAFA'
                   }
                 },
               }
@@ -362,7 +367,7 @@ export default {
                 axisLine: {
                   show: false,
                   lineStyle: {
-                    color: '#ddd'
+                    color: '#E1EAFA'
                   }
                 },
                 axisTick: {
@@ -371,7 +376,9 @@ export default {
                 axisLabel: {
                   interval: 0,
                   textStyle: {
-                    color: '#ddd'
+                    color: '#E1EAFA',
+                    fontSize: 14,
+                    fontWeight: 400,
                   }
                 },
               },
@@ -400,7 +407,7 @@ export default {
               },
               itemStyle: {
                 normal: {
-                  barBorderRadius: [0, 10, 10, 0],
+                  // barBorderRadius: [0, 10, 10, 0],
                   color: function (params) {
                     if (params.dataIndex < 3) {
                       return colors[params.dataIndex];
@@ -424,7 +431,7 @@ export default {
                 width: 1, //尾迹线条宽度
                 opacity: 0.2, //尾迹线条透明度
                 curveness: .3, //尾迹线条曲直度
-                color: 'rgba(0,255,255,0.5)',
+                color: colors[5],
               },
               tooltip: {
                 show: false,
@@ -448,10 +455,14 @@ export default {
                 borderColor: '#ffffff00',
                 padding: 0,
                 formatter: function (params) {
-                  return `<div class="scatterTooltip">
-                  <div class="scatterTooltipText"><p>时间：</p>${params.data.time}</p></div>
-                  <div class="scatterTooltipText"><p>产值：</p><p>${params.data.yield}</p></div>
-                </div>`;
+                  let str = ''
+                  if (params.data.time) {
+                    str = `<div class="scatterTooltip">
+                      <div class="scatterTooltipText"><p>时间：</p>${params.data.time}</p></div>
+                      <div class="scatterTooltipText"><p>产值：</p><p>${params.data.yield}</p></div>
+                      </div>`
+                  }
+                  return str;
                 },
               },
               label: {
@@ -479,7 +490,7 @@ export default {
                   color: '#F19642',
                 }
               },
-              data: mapData[index],
+              data: [{ "name": "中国", "value": [105.86913635, 34.91315196, 4] }, ...mapData[index]],
             }],
           })
       });
@@ -580,6 +591,25 @@ export default {
     top: 10px;
     left: 50px;
     z-index: 99;
+    background: #ffffff00;
+
+    ::v-deep .el-form-item__label {
+      color: #B8BECC;
+    }
+  }
+
+  .echarts-title-icon {
+    position: absolute;
+    z-index: 3;
+    right: 230px;
+    top: 20px;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 30px;
+    text-align: center;
+    color: #7AEEF7;
+    border: 1px solid #7AEEF7;
   }
 
   .echarts {
