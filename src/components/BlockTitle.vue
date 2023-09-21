@@ -2,8 +2,12 @@
   <div class="title" :style="showTitleBG ? '' : 'background:#00000000'">
     <p>{{ title }}</p>
     <div style="float: right;" @click="titleChoose()">
-      <el-button v-if="type == 'spread'" class="titleIcon" icon="el-icon-full-screen"> 展开 </el-button>
-      <el-button v-else-if="type == 'more'" class="titleIcon" icon="el-icon-d-arrow-right"> 更多 </el-button>
+      <el-button v-if="type == 'spread'" class="titleIcon">
+        展开 <i class="el-icon-full-screen"></i>
+      </el-button>
+      <el-button v-else-if="type == 'more'" class="titleIcon">
+        更多 <i class="el-icon-d-arrow-right"></i>
+      </el-button>
     </div>
   </div>
 </template>
@@ -75,8 +79,9 @@ export default {
 
 .titleIcon {
   background: #fff9f900;
-  color: #fff;
+  color: #B8BECC;
   border: 0;
+  font-size: 14px;
 
   &:hover,
   &:focus {

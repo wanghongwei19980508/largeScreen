@@ -74,19 +74,49 @@ export default {
         },
         xAxis: [
           {
+            name: this.interchange ? this.barEchartData.name : '',
+            nameTextStyle: {
+              color: '#868D9C',
+              fontSize: 12,
+            },
             type: this.interchange ? 'value' : 'category',
-            name: '',
             data: this.interchange ? [] : this.barEchartData.xAxis,
             axisTick: {
               alignWithLabel: true
             },
+            axisLabel: {
+              textStyle: {
+                color: '#B8BECC'
+              }
+            },
+            splitLine: {
+              lineStyle: {
+                type: this.barEchartData.splitLineType ? this.barEchartData.splitLineType : 'solid',
+                color: '#E6F7FF20'
+              }
+            }
           }
         ],
         yAxis: [
           {
-            name: '',
+            name: this.interchange ? '' : this.barEchartData.name,
+            nameTextStyle: {
+              color: '#868D9C',
+              fontSize: 12,
+            },
             type: this.interchange ? 'category' : 'value',
             data: this.interchange ? this.barEchartData.xAxis : [],
+            axisLabel: {
+              textStyle: {
+                color: '#B8BECC'
+              }
+            },
+            splitLine: {
+              lineStyle: {
+                type: this.barEchartData.splitLineType ? this.barEchartData.splitLineType : 'solid',
+                color: '#E6F7FF20'
+              }
+            }
           },
         ],
       }
