@@ -47,7 +47,8 @@ export default {
   width: calc(100% - 30px);
   min-width: 380px;
   height: 40px;
-  background: linear-gradient(90deg, #2187FF 0%, rgba(33, 135, 255, 0) 100%);
+  background: linear-gradient(90deg, #003A83 0%, rgba(33, 135, 255, 0) 100%);
+  opacity: 1;
   text-align: left;
   padding: 0 0 0 30px;
   position: relative;

@@ -127,6 +127,7 @@
 </template>
   
 <script>
+import * as echarts from 'echarts';
 import barChart from '../components/barChart.vue'
 import BlockTitle from '../components/BlockTitle.vue'
 import previewCard from '../components/previewCard.vue'
@@ -154,9 +155,10 @@ export default {
   mounted() {
     this.barEchartData = {
       xAxis: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-      series: [{ name: '数据一', data: [10, 52, 200, 334, 390, 330, 220,] }, { name: '数据2', data: [10, 52, 200, 334, 390, 330, 220,], type: 'line' }],
+      series: [{ name: '数据一', data: [10, 52, 200, 334, 390, 330, 220,], color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [{ offset: 0, color: '#1DE4F700' }, { offset: 1, color: '#1DE4F7ff' }]) }, { name: '数据2', data: [10, 52, 200, 334, 390, 330, 220,], type: 'line' }],
       splitLineType: 'dashed',
-      name: '11'
+      name: '11',
+
     }
     this.policyData = [
       { title: '捷爱士光电科技袜子星礼卡你擦', source: '半导体半导体半导体', date: '2022-02-02' },

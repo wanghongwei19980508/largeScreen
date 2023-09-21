@@ -134,9 +134,9 @@ export default {
     // 地图绘制
     map(timeData, mapData) {
       const colors = [
-        new echarts.graphic.LinearGradient(0, 0, 1, 0, [{ offset: 0, color: '#94C9FF' }, { offset: 1, color: '#ff0000' }]),
-        new echarts.graphic.LinearGradient(0, 0, 1, 0, [{ offset: 0, color: '#94C9FF' }, { offset: 1, color: '#00ff00' }]),
-        new echarts.graphic.LinearGradient(0, 0, 1, 0, [{ offset: 0, color: '#94C9FF' }, { offset: 1, color: '#0000ff' }]),
+        new echarts.graphic.LinearGradient(0, 0, 1, 0, [{ offset: 0, color: '#1f5fd300' }, { offset: 1, color: '#1f5fd3ff' }]),
+        new echarts.graphic.LinearGradient(0, 0, 1, 0, [{ offset: 0, color: '#2687cb00' }, { offset: 1, color: '#2687cbff' }]),
+        new echarts.graphic.LinearGradient(0, 0, 1, 0, [{ offset: 0, color: '#1fc2d300' }, { offset: 1, color: '#1fc2d3ff' }]),
         new echarts.graphic.LinearGradient(0, 0, 1, 0, [{ offset: 0, color: '#94C9FF' }, { offset: 0.8, color: '#275BC1' }]),
         new echarts.graphic.LinearGradient(1, 1, 1, 1, [{ offset: 0, color: '#fff' }, { offset: 1, color: '#7AEEF7' }]),
         new echarts.graphic.LinearGradient(1, 0, 1, 1, [{ offset: 0, color: '#fff' }, { offset: 0.4, color: '#FFA755' }])
