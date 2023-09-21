@@ -63,7 +63,7 @@ export default {
         ]
         this.$set(this, 'firmId', this.selectOptions[0].value)
         this.changeFirmId()
-      }, 1000)
+      }, 0)
     },
     // 切换下拉框
     changeFirmId() {
@@ -86,7 +86,7 @@ export default {
                 { "name": "古巴", time: '2022-02-28', yield: 674322, "value": [-77.78117, 21.52176, 1] },
               ], [
                 { "name": "埃及", time: '2023-12-25', yield: 675434, "value": [29.87463, 26.58671, 0] },
-                { "name": "日本", time: '2023-12-25', yield: 673434, "value": [140.15836 , 38.07746, 1] },
+                { "name": "日本", time: '2023-12-25', yield: 673434, "value": [140.15836, 38.07746, 1] },
                 { "name": "关岛", time: '2023-12-25', yield: 67743, "value": [144.79373, 13.44430, 1] },
               ]
             ]
@@ -126,11 +126,16 @@ export default {
           }
         ]
         this.map(data[this.firmId].timeData, data[this.firmId].mapData)
-      }, 1000)
+      }, 0)
     },
     // 地图绘制
     map(timeData, mapData) {
-      const colors = ['#ff0000', '#00ff00', '#0000ff', '#cccccc'];
+      const colors = [
+        new echarts.graphic.LinearGradient(0, 0, 1, 0, [{ offset: 0, color: '#94C9FF' }, { offset: 1, color: '#ff0000' }]),
+        new echarts.graphic.LinearGradient(0, 0, 1, 0, [{ offset: 0, color: '#94C9FF' }, { offset: 1, color: '#00ff00' }]),
+        new echarts.graphic.LinearGradient(0, 0, 1, 0, [{ offset: 0, color: '#94C9FF' }, { offset: 1, color: '#0000ff' }]),
+        new echarts.graphic.LinearGradient(0, 0, 1, 0, [{ offset: 0, color: '#94C9FF' }, { offset: 1, color: '#275BC1' }])
+      ];
       const coverData = (startcoord, mapData) => {
         let res = mapData.map((item, index) => {
           return {
@@ -267,18 +272,64 @@ export default {
         },
         options: []
       }
-
+      let png = require('../../../assets/echarts-title.png')
       this.option.baseOption.timeline.data.forEach((item, index) => {
         this.option.options.push(
           {
             tooltip: {
               trigger: 'item'
             },
+            title: {
+              text: "{a|产能排行榜（吨）}",
+              subtext: "{b|□}",
+              top: 10,
+              right: 0,
+              width: 200,
+              height: 30,
+              itemGap: -40,
+              textStyle: {
+                rich: {
+                  'a': {
+                    backgroundColor: {
+                      image: png
+                    },
+                    width: 250,
+                    height: 30,
+                    lineHeight: 30,
+                    fontSize: 20,
+                    fontWeight: 400,
+                    fontFamily: 'HarmonyOS Sans SC-Medium',
+                    color: '#E1EAFA',
+                    padding: [5, 15],
+                    align: 'center'
+                  },
+                },
+              },
+              subtextStyle: {
+                rich: {
+                  'b': {
+                    width: 30,
+                    height: 30,
+                    lineHeight: 30,
+                    // backgroundColor: {
+                    //   image: png
+                    // },
+                    fontSize: 20,
+                    color: '#7AEEF7',
+                    textBorderColor: '#7AEEF7',
+                    textBorderWidth: 20,
+                    textBorderType: 'solid',
+                    align: 'center',
+                    padding: [0, 0, 0, 20]
+                  },
+                },
+              }
+            },
             grid: {
-              top: '20',
+              top: '50',
               right: '50',
               width: '200',
-              height: '300',
+              height: '250',
             },
             xAxis: [
               {
@@ -338,6 +389,7 @@ export default {
               type: 'bar',
               z: 99,
               data: mapData[index].map(item => { return item.yield }),
+              barMaxWidth: 30,
               label: {
                 show: true,
                 position: 'right',
@@ -353,7 +405,7 @@ export default {
                     if (params.dataIndex < 3) {
                       return colors[params.dataIndex];
                     } else {
-                      return '#00ffff80';
+                      return colors[3];
                     }
                   },
                 }
