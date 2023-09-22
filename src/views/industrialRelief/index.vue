@@ -2,7 +2,7 @@
   <div>
     <panel :panelHeaderShow="true">
       <template #aside>
-        <div class="borderBox">
+        <div class="buttonBox">
           <el-button type="primary" :disabled="stepActive < 0" @click="stepActive = 0">基本信息填报</el-button>
           <el-button type="primary" :disabled="stepActive < 1" @click="stepActive = 1">受打压申请</el-button>
           <el-button type="primary" :disabled="stepActive < 2" @click="stepActive = 2">产业生态扶持</el-button>
@@ -139,26 +139,9 @@ export default {
   text-align: left;
 }
 
-.borderBox {
-  position: relative;
-  height: calc(100% - 50px);
-  padding: 50px 40px 0;
-  z-index: 1;
+.buttonBox {
   display: flex;
   flex-direction: column;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('../../assets/border.png');
-    background-repeat: repeat;
-    background-size: 100% 100%;
-    z-index: -1;
-  }
 
   ::v-deep .el-button+.el-button {
     margin-left: 0px;

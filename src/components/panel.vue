@@ -13,7 +13,9 @@
 
       <el-container>
         <el-aside v-show="panelAsideShow" :width="panelAsideWidth">
-          <slot name="aside" :row="''"></slot>
+          <div class="borderBox">
+            <slot name="aside" :row="''"></slot>
+          </div>
         </el-aside>
         <el-main>
           <slot name="main" :row="''"></slot>
@@ -134,6 +136,26 @@ export default {
 
 ::v-deep .el-breadcrumb__inner a {
   color: #ffffff;
+}
+
+.borderBox {
+  position: relative;
+  height: calc(100% - 50px);
+  padding: 50px 40px 0;
+  z-index: 1;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../assets/border.png');
+    background-repeat: repeat;
+    background-size: 100% 100%;
+    z-index: -1;
+  }
 }
 </style>
     
