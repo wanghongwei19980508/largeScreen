@@ -144,12 +144,13 @@ export default {
         name: null,
         time: null,
       },
-      dialogData: {}, // 统计图数据
-      requestInterface: {
+      echartsRequest: null, // 当前弹窗接口地址
+      requestInterface: { // 统计图接口映射
         '1': '接口1',
         '2': '接口2',
         '3': '接口3'
-      }
+      },
+      dialogData: {}, // 统计图数据
     }
   },
   mounted() {
@@ -158,7 +159,6 @@ export default {
       series: [{ name: '数据一', data: [10, 52, 200, 334, 390, 330, 220,], color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [{ offset: 0, color: '#1DE4F700' }, { offset: 1, color: '#1DE4F7ff' }]) }, { name: '数据2', data: [10, 52, 200, 334, 390, 330, 220,], type: 'line' }],
       splitLineType: 'dashed',
       name: '11',
-
     }
     this.policyData = [
       { title: '捷爱士光电科技袜子星礼卡你擦', source: '半导体半导体半导体', date: '2022-02-02' },
@@ -178,14 +178,31 @@ export default {
     },
     // 统计图弹窗
     dialogView(item) {
-      // this.requestInterface[item]
+      this.echartsRequest = this.requestInterface[item]
+      this.dialogForm = {
+        name: null,
+        time: null,
+      }
+      this.dialogVisible = true
+    },
+    // 获取弹窗统计图数据
+    dialogEchartsData() {
       this.dialogData = {
         xAxis: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
         series: [{ name: '数据一', data: [10, 52, 200, 334, 390, 330, 220,] }, { name: '数据2', data: [10, 52, 200, 334, 390, 330, 220,], type: 'line' }],
         splitLineType: 'dashed',
         name: '11'
       }
-      this.dialogVisible = true
+    }
+  },
+  watch: {
+    dialogForm: {
+      handler(newValue, oldValue) {
+        if (this.dialogVisible) {
+          this.dialogEchartsData()
+        }
+      },
+      deep: true
     }
   }
 }

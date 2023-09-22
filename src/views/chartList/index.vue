@@ -4,23 +4,23 @@
       <template #main>
         <div class="echartsBox">
           <div class="echarts">
-            <BlockTitle :type="'spread'" @titleClick="expandView" />
+            <BlockTitle :type="'spread'" @titleClick="dialogView('1')" />
             <barChart ref="barEchartCompRef" :barEchartData="barEchartData1" />
           </div>
           <div class="echarts">
-            <BlockTitle :type="'spread'" />
+            <BlockTitle :type="'spread'" @titleClick="dialogView('2')" />
             <barChart ref="barEchartCompRef" :barEchartData="barEchartData1" />
           </div>
           <div class="echarts">
-            <BlockTitle :type="'spread'" />
+            <BlockTitle :type="'spread'" @titleClick="dialogView('3')" />
             <barChart ref="barEchartCompRef" :barEchartData="barEchartData" />
           </div>
           <div class="echarts">
-            <BlockTitle :type="'spread'" />
+            <BlockTitle :type="'spread'" @titleClick="dialogView('4')" />
             <barChart ref="barEchartCompRef" :barEchartData="barEchartData" />
           </div>
           <div class="echarts">
-            <BlockTitle :type="'spread'" />
+            <BlockTitle :type="'spread'" @titleClick="dialogView('5')" />
             <barChart ref="barEchartCompRef" :barEchartData="barEchartData" />
           </div>
         </div>
@@ -54,6 +54,7 @@
 </template>
   
 <script>
+import * as echarts from 'echarts';
 import panel from '../../components/panel.vue'
 import barChart from '../../components/barChart.vue'
 import BlockTitle from '../../components/BlockTitle.vue'
@@ -67,6 +68,12 @@ export default {
         time: null,
       },
       dialogData: {}, // 统计图数据
+      requestInterface: { // 统计图接口映射
+        '1': '接口1',
+        '2': '接口2',
+        '3': '接口3'
+      },
+      echartsRequest: null, // 当前弹窗接口地址
       barEchartData: {}, // 
       barEchartData1: {
         xAxis: ['1', '2', '3', '4', '5', '6', '7', '1', '2', '3', '4', '5', '6', '7'],
@@ -84,9 +91,32 @@ export default {
     }, 1000)
   },
   methods: {
-    expandView() {
-      this.dialogData = this.barEchartData1
+    dialogView(item) {
+      this.echartsRequest = this.requestInterface[item]
+      this.dialogForm = {
+        name: null,
+        time: null,
+      }
       this.dialogVisible = true
+    },
+    // 获取弹窗统计图数据
+    dialogEchartsData() {
+      this.dialogData = {
+        xAxis: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        series: [{ name: '数据一', data: [10, 52, 200, 334, 390, 330, 220,], color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [{ offset: 0, color: '#1DE4F700' }, { offset: 1, color: '#1DE4F7ff' }]) }, { name: '数据2', data: [10, 52, 200, 334, 390, 330, 220,], type: 'line' }],
+        splitLineType: 'dashed',
+        name: '11',
+      }
+    }
+  },
+  watch: {
+    dialogForm: {
+      handler(newValue, oldValue) {
+        if (this.dialogVisible) {
+          this.dialogEchartsData()
+        }
+      },
+      deep: true
     }
   }
 }

@@ -67,7 +67,7 @@ export default {
           }
         },
         grid: {
-          left: '50px',
+          left: '30px',
           right: '0%',
           bottom: this.barEchartData.xAxis && this.barEchartData.xAxis.length > 10 ?
             '70px' : '20px'
@@ -139,8 +139,8 @@ export default {
         option.dataZoom = [
           {
             show: true,
-            start: 1,
-            end: (10 / this.barEchartData.xAxis.length) * 100,
+            startValue: 0,
+            endValue: 9,
             orient: this.interchange ? 'vertical' : 'horizontal',
           },
         ]
