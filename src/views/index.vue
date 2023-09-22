@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="internationalContent">
-      <BlockTitle :type="'more'" :title="'国际制造业数据库'" @titleClick="expandView('/index/chartList')" />
+      <BlockTitle :type="'more'" :title="'国际制造业监测'" @titleClick="expandView('/index/manufacturingMonitoring')" />
       <div class="echart-International">
         <div class="echarts">
           <BlockTitle :type="'spread'" @titleClick="dialogView('1')" :showTitleBG="false" :title="'GDP'" />
@@ -25,7 +25,7 @@
     </div>
     <div class="twoBox">
       <div class="asideContent">
-        <BlockTitle :type="'more'" :title="'国际工业链政策'" @titleClick="expandView('/index/chartList')" />
+        <BlockTitle :type="'more'" :title="'国际供应链政策'" @titleClick="expandView('/index/supplyChainPolicy')" />
         <el-table class="hide-header" :height="'calc(100% - 40px)'" :data="policyData">
           <el-table-column prop="title" label="标题" min-width="45%" header-align="left">
             <template v-slot="scope">
@@ -45,7 +45,7 @@
         </el-table>
       </div>
       <div class="asideContent">
-        <BlockTitle :type="'more'" :title="'企业外迁动态'" @titleClick="expandView('/index/chartList')" />
+        <BlockTitle :type="'more'" :title="'国际企业外迁动态'" @titleClick="expandView('/index/chartList')" />
         <el-table class="hide-header" :height="'calc(100% - 40px)'" :data="policyData">
           <el-table-column prop="title" label="标题" min-width="70%" header-align="left">
             <template v-slot="scope">
