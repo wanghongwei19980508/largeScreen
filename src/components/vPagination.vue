@@ -1,6 +1,6 @@
 <template>
   <div class="demo-pagination-block">
-    <el-pagination :current-page.sync="tableTotal.page" :page-size="tableTotal.size" :page-sizes="pageSizes"
+    <el-pagination :current-page.sync="tableTotal.currentPage" :page-size="tableTotal.pageSize" :page-sizes="pageSizes"
       :small="small" :disabled="disabled" :background="background" layout="total, sizes, prev, pager, next, jumper"
       :total="total" @size-change="handleSizeChange" @current-change="handleCurrentChange" />
   </div>
@@ -13,8 +13,8 @@ export default {
   data() {
     return {
       tableTotal: {
-        page: this.currentPage,
-        size: this.pageSize
+        currentPage: this.currentPage,
+        pageSize: this.pageSize
       }
     };
   },
@@ -52,18 +52,18 @@ export default {
   },
   methods: {
     handleSizeChange(val) {
-      this.tableTotal.size = val
+      this.tableTotal.pageSize = val
       const pageMax = Math.ceil(this.total / val)
-      if (this.tableTotal.page > pageMax) return
+      if (this.tableTotal.currentPage > pageMax) return
       this.handleTableChange(this.tableTotal)
     },
     handleCurrentChange(val) {
-      this.tableTotal.page = val
+      this.tableTotal.currentPage = val
       this.handleTableChange(this.tableTotal)
     },
     cleartableTotal(row) {
-      this.tableTotal.page = row.page
-      this.tableTotal.size = row.size
+      this.tableTotal.currentPage = row.page
+      this.tableTotal.pageSize = row.size
       this.tableTotal.noChange = true
       this.handleTableChange(this.tableTotal)
     },
