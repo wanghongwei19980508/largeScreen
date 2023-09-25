@@ -26,7 +26,7 @@
     <div class="twoBox">
       <div class="asideContent">
         <BlockTitle :type="'more'" :title="'国际供应链政策'" @titleClick="expandView('/index/supplyChainPolicy')" />
-        <el-table class="hide-header" :height="'calc(100% - 40px)'" :data="policyData">
+        <el-table class="hide-header" :height="'calc(100% - 40px)'" :data="policyData" stripe>
           <el-table-column prop="title" label="标题" min-width="45%" header-align="left">
             <template v-slot="scope">
               <div class="tableText">{{ scope.row.title }}</div>
@@ -46,7 +46,7 @@
       </div>
       <div class="asideContent">
         <BlockTitle :type="'more'" :title="'国际企业外迁动态'" @titleClick="expandView('/index/chartList')" />
-        <el-table class="hide-header" :height="'calc(100% - 40px)'" :data="policyData">
+        <el-table class="hide-header" :height="'calc(100% - 40px)'" :data="policyData" stripe>
           <el-table-column prop="title" label="标题" min-width="70%" header-align="left">
             <template v-slot="scope">
               <div class="tableText">{{ scope.row.title }}</div>
@@ -63,7 +63,7 @@
     <div class="twoBox">
       <div class="asideContent">
         <BlockTitle :type="'more'" :title="'国际冲击'" @titleClick="expandView('/index/chartList')" />
-        <el-table :height="'calc(100% - 40px)'" :data="policyData">
+        <el-table :height="'calc(100% - 40px)'" :data="policyData" stripe>
           <el-table-column prop="title" label="企业名称" min-width="20%" header-align="left">
             <template v-slot="scope">
               <div class="tableText">{{ scope.row.title }}</div>

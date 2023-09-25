@@ -43,7 +43,7 @@ export default {
     },
     panelAsideWidth: {
       type: String,
-      default: '300px',
+      default: '320px',
     },
     panelBoxHeight: {
       type: String,

@@ -5,7 +5,6 @@ body {
 // form表单,dialog弹出框
 .el-form,
 .el-dialog,
-.el-table,
 .el-steps--simple,
 .el-scrollbar {
   background: linear-gradient(to bottom, #0D1F38, #0D1D35, #0D1E36);
@@ -33,24 +32,66 @@ body {
     color: aliceblue;
   }
 
-  th.el-table__cell,
-  td.el-table__cell,
-  tr {
-    background-color: #0D1847;
-    border-bottom-color: #162A5020 !important;
-    color: #E1EAFA;
-
-    &&:hover {
-      background-color: #0032a6;
-    }
-  }
-
   &&::before {
     background-color: #0032a6;
   }
+}
 
-  tbody tr:hover>td {
-    background: #293f72 !important;
+// 表格
+.el-table,
+.el-table--striped .el-table__body {
+  background: linear-gradient(to bottom, #0D1F38, #0D1D35, #0D1E36);
+
+  &::before {
+    background-color: #EBEEF500;
+  }
+
+  .has-gutter,
+  tr {
+    background: #ffffff00;
+  }
+
+  th.el-table__cell,
+  th.el-table__cell.is-leaf {
+    background: #0A2D6B50;
+    color: #7BB0FF;
+    border-top: 1px solid rgba(36, 137, 255, 0.3);
+    border-bottom: 1px solid rgba(36, 137, 255, 0.3);
+
+    &:nth-of-type(1) {
+      border-left: 1px solid rgba(36, 137, 255, 0.3);
+    }
+
+    &:nth-last-of-type(2) {
+      border-right: 1px solid rgba(36, 137, 255, 0.3);
+    }
+    &:nth-last-of-type(1) {
+      border: none;
+    }
+  }
+
+  tr.el-table__row td.el-table__cell {
+    background-color: #0B255C;
+    border-bottom-color: rgba(148, 201, 255, 0.1);
+    color: #B8BECC;
+  }
+
+  tr.el-table__row--striped td.el-table__cell {
+    background: #0C2359;
+  }
+
+  tr.current-row td.el-table__cell,
+  tr.el-table__row--striped.current-row td.el-table__cell {
+    background-color: #053369;
+    border-bottom-color: #2975F2;
+    border-top: 1px solid #2975F2;
+    color: #94C9FF;
+  }
+}
+
+.el-table__body-wrapper {
+  .el-table__body {
+    width: 100% !important;
   }
 }
 
@@ -139,13 +180,7 @@ body {
   color: #59b9d8;
 }
 
-
-.el-table__body-wrapper {
-  .el-table__body {
-    width: 100% !important;
-  }
-}
-
+// 滑动框
 * {
   &::-webkit-scrollbar-track {
     background-color: #063570;
@@ -166,19 +201,24 @@ body {
 // 分页
 .el-pagination {
 
+  .el-pagination__total,
+  .el-pagination__jump {
+    color: #B8BECC;
+  }
+
   .btn-prev,
   .btn-next,
   .el-pager li {
-    background-color: #00306B;
-    border-color: #0962CB;
-    color: #f8faff;
+    color: #B8BECC;
+    background-color: #40536900;
 
     &:disabled {
-      background-color: #405369;
+      background-color: #40536900;
     }
 
     &.active {
-      background-color: #0962CB;
+      color: #2187FF;
+      background-color: #0962CB00;
     }
   }
 }

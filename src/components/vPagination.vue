@@ -1,7 +1,7 @@
 <template>
   <div class="demo-pagination-block">
     <el-pagination :current-page.sync="tableTotal.currentPage" :page-size="tableTotal.pageSize" :page-sizes="pageSizes"
-      :small="small" :disabled="disabled" :background="background" layout="total, sizes, prev, pager, next, jumper"
+      :small="small" :disabled="disabled" layout="total, sizes, prev, pager, next, jumper"
       :total="total" @size-change="handleSizeChange" @current-change="handleCurrentChange" />
   </div>
 </template>
@@ -43,10 +43,6 @@ export default {
       type: Boolean,
       default: () => false
     },
-    background: {
-      type: Boolean,
-      default: () => true
-    }
   },
   mounted() {
   },

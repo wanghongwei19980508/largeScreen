@@ -23,7 +23,7 @@
       </template>
       <template #main>
         <vTable :tableColumn="tableColumn" :tableData="tableData" :tableTotal="tableTotal"
-          :height="'calc(100vh -  300px)'" @tableChange="tableChange"></vTable>
+          :height="'calc(100vh -  225px)'" @tableChange="tableChange"></vTable>
       </template>
     </panel>
   </div>
@@ -54,17 +54,18 @@ export default {
       },
       tableColumn: [
         {
-          prop: 'name',
-          label: '姓名',
-          fixed: true
+          prop: 'title',
+          label: '政策标题',
         },
         {
-          prop: 'state',
-          label: '国家',
+          prop: 'time',
+          label: '发布时间',
+          width: '100'
         },
       ],
       tableData: [
-        { name: '111', state: '222' }
+        { title: '我是标题我是标题我是标题我是标题我是标题我是标题我是标题我是标题我是标题', time: '2022-01-03', source: '最多应该是展示十二个字吧', content: '我是标题我是标题我是标题我是标题我是标题我是标题我是标题我是标题我是标题' },
+        { title: '我是标题我是标题我是标题我是标题我是标题我是标题我是标题我是标题我是标题', time: '2023-01-03', source: 'xxxxx', content: 'asdasd' },
       ]
     }
   },
@@ -103,8 +104,9 @@ export default {
 ::v-deep .el-form {
   background: #ffffff00;
 
-  .el-range-editor.el-input__inner {
-    width: 220px;
+  .el-range-editor.el-input__inner,
+  .el-input {
+    width: 240px;
   }
 }
 </style>
