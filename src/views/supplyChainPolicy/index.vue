@@ -4,13 +4,13 @@
     <panel :panelAsideShow="true">
       <template #aside>
         <el-form ref="fromRef" :model="asideForm" :label-position="'top'" label-width="80px">
-          <el-form-item label="地区">
+          <el-form-item label="地区" prop="district">
             <el-select v-model="asideForm.district" placeholder="请选择">
               <el-option v-for="dict in dict.type.districtList" :key="dict.value" :label="dict.label"
                 :value="dict.value"></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="时间">
+          <el-form-item label="时间" prop="time">
             <el-date-picker v-model="asideForm.time" type="daterange" range-separator="至" start-placeholder="开始日期"
               end-placeholder="结束日期">
             </el-date-picker>
@@ -23,7 +23,7 @@
       </template>
       <template #main>
         <vTable :tableColumn="tableColumn" :tableData="tableData" :tableTotal="tableTotal"
-          :height="'calc(100vh -  285px)'" @tableChange="tableChange"></vTable>
+          :height="'calc(100vh -  295px)'" @tableChange="tableChange"></vTable>
       </template>
     </panel>
   </div>
@@ -60,7 +60,8 @@ export default {
         {
           prop: 'time',
           label: '发布时间',
-          width: '170'
+          width: '170',
+          sortable: true
         },
       ],
       tableData: [
@@ -86,10 +87,6 @@ export default {
     },
     // 重置表单
     resetForm(formEl) {
-      this.asideForm = {
-        district: null,
-        time: null
-      }
       this.$refs[formEl].resetFields()
       this.getList()
     }

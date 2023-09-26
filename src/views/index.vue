@@ -62,7 +62,7 @@
     </div>
     <div class="twoBox">
       <div class="asideContent">
-        <BlockTitle :type="'more'" :title="'国际冲击'" @titleClick="expandView('/index/chartList')" />
+        <BlockTitle :type="'more'" :title="'国际冲击'" @titleClick="expandView('/index/shock')" />
         <el-table :height="'calc(100% - 40px)'" :data="policyData" stripe>
           <el-table-column prop="title" label="企业名称" min-width="20%" header-align="left">
             <template v-slot="scope">

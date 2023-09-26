@@ -4,25 +4,25 @@
     <panel :panelAsideShow="true">
       <template #aside>
         <el-form ref="fromRef" :model="asideForm" :label-position="'top'" label-width="80px">
-          <el-form-item label="所属行业">
+          <el-form-item label="所属行业" prop="district">
             <el-select v-model="asideForm.district" placeholder="请选择">
               <el-option v-for="dict in dict.type.districtList" :key="dict.value" :label="dict.label"
                 :value="dict.value"></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="内外资">
+          <el-form-item label="内外资" prop="district">
             <el-select v-model="asideForm.district" placeholder="请选择">
               <el-option v-for="dict in dict.type.districtList" :key="dict.value" :label="dict.label"
                 :value="dict.value"></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="外迁地">
+          <el-form-item label="外迁地" prop="district">
             <el-select v-model="asideForm.district" placeholder="请选择">
               <el-option v-for="dict in dict.type.districtList" :key="dict.value" :label="dict.label"
                 :value="dict.value"></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="时间">
+          <el-form-item label="时间" prop="time">
             <el-date-picker v-model="asideForm.time" type="daterange" range-separator="至" start-placeholder="开始日期"
               end-placeholder="结束日期">
             </el-date-picker>
@@ -35,7 +35,7 @@
       </template>
       <template #main>
         <vTable :tableColumn="tableColumn" :tableData="tableData" :tableTotal="tableTotal"
-          :height="'calc(100vh -  335px)'" @tableChange="tableChange">
+          :height="'calc(100vh -  345px)'" @tableChange="tableChange">
           <template #header>
             <el-input :style="{ 'width': '200px', 'float': 'right', 'margin-bottom': '10px' }" v-model="asideForm.name"
               placeholder="企业名称"></el-input>
@@ -82,7 +82,8 @@ export default {
         {
           prop: 'time',
           label: '发布时间',
-          width: '170'
+          width: '170',
+          sortable: true
         },
       ],
       tableData: [
@@ -108,10 +109,6 @@ export default {
     },
     // 重置表单
     resetForm(formEl) {
-      this.asideForm = {
-        district: null,
-        time: null
-      }
       this.$refs[formEl].resetFields()
       this.getList()
     }

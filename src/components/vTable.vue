@@ -6,7 +6,7 @@
         </slot>
       </template>
       <el-table :data="tableData" :height="height" stripe highlight-current-row @current-change="handleCurrentChange"
-        @selection-change="handleSelectionChange">
+        @selection-change="handleSelectionChange" ref="tableRef">
         <el-table-column v-if="selectionShow" type="selection" width="55">
         </el-table-column>
         <el-table-column v-for="( item, tCindex ) in  tableColumn " :key="tCindex" :fixed="item.fixed" :prop="item.prop"
@@ -126,20 +126,6 @@ export default {
     },
   },
   methods: {
-    tableRowClassName({ row }) {
-      if (row.tableState === 'primary') {
-        return 'primary-row'
-      } else if (row.tableState === 'success') {
-        return 'success-row'
-      } else if (row.tableState === 'info') {
-        return 'info-row'
-      } else if (row.tableState === 'warning') {
-        return 'warning-row'
-      } else if (row.tableState === 'danger') {
-        return 'danger-row'
-      }
-      return ''
-    },
     pageChange(obj) {
       this.tableTotals = obj
       this.tableChange()
@@ -147,6 +133,7 @@ export default {
     cleartableTotal(row) {
       this.$refs['paginationRef'].cleartableTotal(row)
     },
+    // 页码切换
     tableChange() {
       if (this.headerShow) {
         this.$emit('tableChange', Object.assign(this.tableTotals, this.headerData))
@@ -154,10 +141,12 @@ export default {
         this.$emit('tableChange', this.tableTotals)
       }
     },
+    // 勾选事件
     handleSelectionChange(val) {
       this.multipleSelection = val;
       this.$emit('selectionChange', val)
     },
+    // 点击事件
     handleCurrentChange(val) {
       if (this.currentChangePanel) {
         this.currentChangeSelection = val
@@ -165,6 +154,10 @@ export default {
       } else {
         this.$emit('currentChange', val)
       }
+    },
+    // 取消选择
+    setCurrentRow() {
+      this.$refs['tableRef'].setCurrentRow()
     }
   }
 };

@@ -32,10 +32,6 @@ const routes = [
         name: 'baidumap',
         component: () => import('../views/computent/baidumap/index.vue')
       }, {
-        path: '/from',
-        name: 'from',
-        component: () => import('../views/from/index.vue')
-      }, {
         path: '/index/manufacturingMonitoring',
         name: 'manufacturingMonitoring',
         meta: { title: '国际制造业监测', icon: 'dashboard' },
@@ -50,6 +46,11 @@ const routes = [
         name: 'emigrationDynamics',
         meta: { title: '国际企业外迁动态', icon: 'dashboard' },
         component: () => import('../views/emigrationDynamics/index.vue')
+      }, {
+        path: '/index/shock',
+        name: 'shock',
+        meta: { title: '国际冲击', icon: 'dashboard' },
+        component: () => import('../views/shock/index.vue')
       }, {
         path: '/index/industrialRelief',
         name: 'industrialRelief',
