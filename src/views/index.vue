@@ -45,7 +45,7 @@
         </el-table>
       </div>
       <div class="asideContent">
-        <BlockTitle :type="'more'" :title="'国际企业外迁动态'" @titleClick="expandView('/index/chartList')" />
+        <BlockTitle :type="'more'" :title="'国际企业外迁动态'" @titleClick="expandView('/index/emigrationDynamics')" />
         <el-table class="hide-header" :height="'calc(100% - 40px)'" :data="policyData" stripe>
           <el-table-column prop="title" label="标题" min-width="70%" header-align="left">
             <template v-slot="scope">

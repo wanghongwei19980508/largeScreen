@@ -1,12 +1,16 @@
 <template>
   <div style="display: flex;">
     <div :style="currentChangePanel && expansion ? { 'width': 'calc(100% - 500px)' } : ''">
+      <template>
+        <slot show-overflow-tooltip name="header">
+        </slot>
+      </template>
       <el-table :data="tableData" :height="height" stripe highlight-current-row @current-change="handleCurrentChange"
         @selection-change="handleSelectionChange">
         <el-table-column v-if="selectionShow" type="selection" width="55">
         </el-table-column>
         <el-table-column v-for="( item, tCindex ) in  tableColumn " :key="tCindex" :fixed="item.fixed" :prop="item.prop"
-          :min-width="'100px'" :label="item.label" :width="item.width">
+          :min-width="'100px'" :label="item.label" :width="item.width" :sortable="item.sortable">
           <template #default="scope">
             <div @click="item.handle && item.handle(scope)">
               <span v-if="item.filter" :class="item.handle ? 'spanClass' : ''">
@@ -220,7 +224,7 @@ export default {
   }
 
   .text {
-    height: calc(100vh - 320px);
+    height: calc(100vh - 380px);
     color: #B8BECC;
     overflow: auto;
     font-family: Microsoft YaHei-Regular, Microsoft YaHei;

@@ -4,7 +4,19 @@
     <panel :panelAsideShow="true">
       <template #aside>
         <el-form ref="fromRef" :model="asideForm" :label-position="'top'" label-width="80px">
-          <el-form-item label="地区">
+          <el-form-item label="所属行业">
+            <el-select v-model="asideForm.district" placeholder="请选择">
+              <el-option v-for="dict in dict.type.districtList" :key="dict.value" :label="dict.label"
+                :value="dict.value"></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="内外资">
+            <el-select v-model="asideForm.district" placeholder="请选择">
+              <el-option v-for="dict in dict.type.districtList" :key="dict.value" :label="dict.label"
+                :value="dict.value"></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="外迁地">
             <el-select v-model="asideForm.district" placeholder="请选择">
               <el-option v-for="dict in dict.type.districtList" :key="dict.value" :label="dict.label"
                 :value="dict.value"></el-option>
@@ -23,12 +35,17 @@
       </template>
       <template #main>
         <vTable :tableColumn="tableColumn" :tableData="tableData" :tableTotal="tableTotal"
-          :height="'calc(100vh -  285px)'" @tableChange="tableChange"></vTable>
+          :height="'calc(100vh -  335px)'" @tableChange="tableChange">
+          <template #header>
+            <el-input :style="{ 'width': '200px', 'float': 'right', 'margin-bottom': '10px' }" v-model="asideForm.name"
+              placeholder="企业名称"></el-input>
+          </template>
+        </vTable>
       </template>
     </panel>
   </div>
 </template>
-    
+      
 <script>
 import panel from '../../components/panel.vue'
 import vTable from '../../components/vTable.vue'
@@ -56,6 +73,11 @@ export default {
         {
           prop: 'title',
           label: '政策标题',
+        },
+        {
+          prop: 'title',
+          label: '相关产业',
+          width: '200'
         },
         {
           prop: 'time',
@@ -99,7 +121,7 @@ export default {
   }
 }
 </script>
-    
+      
 <style lang="less" scoped>
 ::v-deep .el-form {
   background: #ffffff00;

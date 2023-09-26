@@ -41,15 +41,20 @@ const routes = [
         meta: { title: '国际制造业监测', icon: 'dashboard' },
         component: () => import('../views/manufacturingMonitoring/index.vue')
       }, {
-        path: '/index/industrialRelief',
-        name: 'industrialRelief',
-        meta: { title: '产业救济', icon: 'dashboard' },
-        component: () => import('../views/industrialRelief/index.vue')
-      }, {
         path: '/index/supplyChainPolicy',
         name: 'supplyChainPolicy',
         meta: { title: '国际供应链政策', icon: 'dashboard' },
         component: () => import('../views/supplyChainPolicy/index.vue')
+      }, {
+        path: '/index/emigrationDynamics',
+        name: 'emigrationDynamics',
+        meta: { title: '国际企业外迁动态', icon: 'dashboard' },
+        component: () => import('../views/emigrationDynamics/index.vue')
+      }, {
+        path: '/index/industrialRelief',
+        name: 'industrialRelief',
+        meta: { title: '产业救济', icon: 'dashboard' },
+        component: () => import('../views/industrialRelief/index.vue')
       }
     ]
   },
