@@ -620,7 +620,7 @@ export default {
 }
 
 ::v-deep .scatterTooltip {
-  background-image: url('../../../assets/border.png');
+  background-image: url('../../../assets/弹窗背景.png');
   background-size: 100% 100%;
   padding: 20px;
   color: #fff;

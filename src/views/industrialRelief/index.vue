@@ -142,6 +142,7 @@ export default {
 .buttonBox {
   display: flex;
   flex-direction: column;
+  width: calc(100% - 30px);
 
   ::v-deep .el-button+.el-button {
     margin-left: 0px;

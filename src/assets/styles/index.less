@@ -7,7 +7,7 @@ body {
 .el-dialog,
 .el-steps--simple,
 .el-scrollbar {
-  background: linear-gradient(to bottom, #0D1F38, #0D1D35, #0D1E36);
+  // background: linear-gradient(to bottom, #0D1F38, #0D1D35, #0D1E36);
 
   .el-dialog__header {
     color: #e6ecf8;
@@ -40,7 +40,7 @@ body {
 // 表格
 .el-table,
 .el-table--striped .el-table__body {
-  background: linear-gradient(to bottom, #0D1F38, #0D1D35, #0D1E36);
+  background-color: #EBEEF500;
 
   &::before {
     background-color: #EBEEF500;
@@ -48,7 +48,7 @@ body {
 
   .has-gutter,
   tr {
-    background: #ffffff00;
+    background: linear-gradient(to bottom, #0D1F38, #0D1D35, #0D1E36);
   }
 
   th.el-table__cell,
@@ -65,6 +65,7 @@ body {
     &:nth-last-of-type(2) {
       border-right: 1px solid rgba(36, 137, 255, 0.3);
     }
+
     &:nth-last-of-type(1) {
       border: none;
     }
@@ -99,6 +100,7 @@ body {
   border-color: #1E4288;
 }
 
+// input
 .el-input__inner,
 .el-range-input,
 .el-textarea__inner,
@@ -220,6 +222,24 @@ body {
       color: #2187FF;
       background-color: #0962CB00;
     }
+  }
+}
+
+.el-dialog {
+  background: #ffffff00;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url('../弹窗背景.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
+  &.el-dialog::before {
+    background-color: #0032a600;
   }
 }
 

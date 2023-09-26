@@ -99,7 +99,7 @@
         </div>
       </div>
     </div>
-    <el-dialog :visible.sync="dialogVisible" width="800px" top="5vh" :show-close="false">
+    <el-dialog :visible.sync="dialogVisible" width="1000px" top="5vh" :show-close="false">
       <span slot="title">
         <BlockTitle />
         <el-form ref="form" :model="dialogForm" label-width="80px" size="mini" style="margin-top: 22px;">
