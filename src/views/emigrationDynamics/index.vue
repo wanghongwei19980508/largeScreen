@@ -29,8 +29,8 @@
           </el-form-item>
         </el-form>
         <div class="footer">
-          <el-button @click="resetForm('fromRef')">重置</el-button>
-          <el-button type="primary" @click="getList">查询</el-button>
+          <el-button type="primary" size="small" @click="resetForm('fromRef')">重置</el-button>
+          <el-button type="primary" size="small" @click="getList">查询</el-button>
         </div>
       </template>
       <template #main>
@@ -73,6 +73,7 @@ export default {
         {
           prop: 'title',
           label: '政策标题',
+          minWidth: '200'
         },
         {
           prop: 'title',
@@ -143,5 +144,11 @@ export default {
   display: flex;
   width: calc(100% - 80px);
   justify-content: space-evenly;
+}
+
+::v-deep .el-button--small {
+  padding: 12px 37px;
+  font-size: 14px;
+  border-radius: 3px;
 }
 </style>

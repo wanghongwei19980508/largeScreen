@@ -10,7 +10,8 @@
         <el-table-column v-if="selectionShow" type="selection" width="55">
         </el-table-column>
         <el-table-column v-for="( item, tCindex ) in  tableColumn " :key="tCindex" :fixed="item.fixed" :prop="item.prop"
-          :min-width="'100px'" :label="item.label" :width="item.width" :sortable="item.sortable">
+          :min-width="item.minWidth ? item.minWidth : '100px'" :label="item.label" :width="item.width"
+          :sortable="item.sortable">
           <template #default="scope">
             <div @click="item.handle && item.handle(scope)">
               <span v-if="item.filter" :class="item.handle ? 'spanClass' : ''">
