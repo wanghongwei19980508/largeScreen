@@ -499,15 +499,14 @@ export default {
       if (this.option) {
         this.mapEchart.on('georoam', (params) => {
           var option = JSON.parse(JSON.stringify(this.mapEchart.getOption()));
-          // console.log(this.option);
-          if (option.series && params.zoom != null) {
-            // option.series = null
-            // this.mapEchart.clear()
-            // this.mapEchart.setOption(option)
-            this.debounceRoam()
-          } else {
+          // if (option.geo.length == 2 && params.zoom != null) {
+          //   option.geo = [option.geo[0]]
+          //   this.mapEchart.clear()
+          //   this.mapEchart.setOption(option)
+          //   this.debounceRoam()
+          // } else {
             this.roam()
-          }
+          // }
         })
         this.mapEchart.on('timelinechanged', params => {
           // 获取当前timeline的切换索引

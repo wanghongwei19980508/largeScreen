@@ -68,7 +68,7 @@ import { Drawer } from 'element-ui';
           </div>
         </div>
         <div class="attribute-group">
-          <div v-for="item in drawerDate.attribute" :key="item.label"
+          <div class="attribute" v-for="item in drawerDate.attribute" :key="item.label"
             :style="{ 'background-color': item.color + '30', 'color': item.color }" effect="plain">
             <div :style="{ 'background-color': item.numberColor }">{{ item.number }}</div> {{ item.label }}
           </div>
@@ -83,7 +83,7 @@ import { Drawer } from 'element-ui';
           </el-descriptions>
         </div>
         <div class="basic-group">
-          <div class="basic-title">基本概况</div>
+          <div class="basic-title">基本概况<i class="el-icon-arrow-down" style="margin: 10px;"></i></div>
           <el-descriptions :column="2" :border="true">
             <el-descriptions-item label="法定代表人">kooriookami</el-descriptions-item>
             <el-descriptions-item label="工商注册码">18100000000</el-descriptions-item>
@@ -107,8 +107,8 @@ import { Drawer } from 'element-ui';
           </el-descriptions>
         </div>
         <div class="shareholder-group">
-          <div class="shareholder-title">股东信息</div>
-          <el-table :data="tableData" style="width: 100%">
+          <div class="shareholder-title">股东信息<i class="el-icon-arrow-down" style="margin: 10px;"></i></div>
+          <el-table :data="drawerDate.shareholderData" style="width: 100%">
             <el-table-column prop="date" label="股东（发起人）" min-width="300">
             </el-table-column>
             <el-table-column prop="name" label="持股比例(%)" width="200">
@@ -283,5 +283,177 @@ export default {
   display: flex;
   width: calc(100% - 80px);
   justify-content: space-evenly;
+}
+
+::v-deep .el-drawer {
+  background: #162A50;
+  overflow: inherit;
+
+  &::before {
+    content: 'x';
+    position: absolute;
+    width: 28px;
+    height: 132px;
+    background-color: #162A50FF;
+    left: -28px;
+    top: calc(50% - 66px);
+    clip-path: polygon(0 30%, 0 70%, 50% 80%, 80% 90%, 100% 100%, 100% 0, 80% 10%, 50% 20%, 0 30%);
+  }
+}
+
+.enterprisesBox {
+  padding: 20px;
+
+  .title {
+    font-size: 20px;
+    font-family: Microsoft YaHei-Semibold, Microsoft YaHei;
+    font-weight: 600;
+    color: #E1EAFA;
+    line-height: 28px;
+  }
+
+  .tag-group {
+    display: flex;
+    margin: 5px 0px;
+
+    div {
+      padding: 5px 10px;
+      height: 18px;
+      font-size: 12px;
+      font-family: HarmonyOS Sans SC-Regular, HarmonyOS Sans SC;
+      font-weight: 400;
+      line-height: 18px;
+      margin: 0 5px;
+      border: 1px solid;
+
+      &:nth-of-type(1) {
+        margin-left: 0;
+      }
+    }
+  }
+
+  .attribute-group {
+    display: flex;
+    margin: 5px 0px;
+
+    .attribute {
+      display: flex;
+      height: 18px;
+      font-size: 12px;
+      font-family: HarmonyOS Sans SC-Regular, HarmonyOS Sans SC;
+      font-weight: 400;
+      line-height: 18px;
+      border: 1px solid;
+      margin: 0 5px;
+      padding: 5px 10px 5px 0px;
+      align-items: center;
+
+      &:nth-of-type(1) {
+        margin-left: 0;
+      }
+
+      div {
+        width: 28px;
+        height: 28px;
+        line-height: 28px;
+        color: #fff;
+        text-align: center;
+        margin-right: 5px;
+      }
+    }
+  }
+
+
+  .information-group {
+    ::v-deep .el-descriptions__body {
+      background: #ffffff00;
+      margin-top: 20px;
+      margin-bottom: 30px;
+      position: relative;
+
+      &::after {
+        content: '';
+        width: 1180px;
+        background-color: #00000080;
+        position: absolute;
+        height: 20px;
+        left: -20px;
+        margin-bottom: 20px;
+      }
+    }
+
+    ::v-deep .el-descriptions-item__label:not(.is-bordered-label) {
+      position: relative;
+      font-size: 12px;
+      font-family: HarmonyOS Sans SC-Regular, HarmonyOS Sans SC;
+      font-weight: 400;
+      color: #868D9C;
+      padding-bottom: 0;
+
+      &::before {
+        content: '';
+        border-right: 1px solid #321402;
+        height: 20px;
+        position: absolute;
+        right: 15px;
+        top: 8px;
+      }
+
+      &:last-of-type::before {
+        border-right: none;
+      }
+    }
+
+    ::v-deep .el-descriptions-item__content {
+      font-size: 14px;
+      font-family: HarmonyOS Sans SC-Regular, HarmonyOS Sans SC;
+      font-weight: 400;
+      color: #E1EAFA;
+    }
+  }
+
+  .basic-group {
+    .basic-title {
+      height: 50px;
+      line-height: 40px;
+      font-size: 16px;
+      font-family: HarmonyOS Sans SC-Medium, HarmonyOS Sans SC;
+      font-weight: 500;
+      color: #E1EAFA;
+    }
+
+    ::v-deep .el-descriptions__body {
+      background-color: #ffffff00;
+    }
+
+    ::v-deep .el-descriptions-item__label.is-bordered-label {
+      background: #163B71;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 14px;
+      font-family: Microsoft YaHei-Regular, Microsoft YaHei;
+      font-weight: 400;
+      color: #E1EAFA;
+    }
+
+    ::v-deep .el-descriptions-item__content {
+      background: #0D3166;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 14px;
+      font-family: Microsoft YaHei-Regular, Microsoft YaHei;
+      font-weight: 400;
+      color: #B8BECC;
+    }
+  }
+
+  .shareholder-group {
+    .shareholder-title {
+      height: 50px;
+      line-height: 40px;
+      font-size: 16px;
+      font-family: HarmonyOS Sans SC-Medium, HarmonyOS Sans SC;
+      font-weight: 500;
+      color: #E1EAFA;
+    }
+  }
 }
 </style>
